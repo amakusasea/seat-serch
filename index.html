@@ -495,6 +495,7 @@ function search(){
 
   const qK = toKata(q);
   const qH = toHira(q);
+  const qLower = q.toLowerCase();
 
   const hits = guests.filter(g => {
     if (g.name.includes(q)) return true;
@@ -503,7 +504,7 @@ function search(){
     if (g.cat.includes(q))   return true;
     if (g.org.includes(q))   return true;
     if (g.title.includes(q)) return true;
-    if (g.seat.includes(q))  return true;
+    if (g.seat.toLowerCase().includes(qLower)) return true;
     return false;
   });
 
@@ -543,6 +544,7 @@ function search(){
     }
   });
 }
+
 </script>
 </body>
 </html>
