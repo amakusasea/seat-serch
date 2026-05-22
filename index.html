@@ -497,6 +497,7 @@ function search(){
   const qH = toHira(q);
   const qLower = q.toLowerCase();
 
+  // --- 名簿データから検索 ---
   const hits = guests.filter(g => {
     if (g.name.includes(q)) return true;
     const gK = toKata(g.kana), gH = toHira(g.kana);
@@ -508,14 +509,28 @@ function search(){
     return false;
   });
 
-  countEl.textContent = hits.length + " 件ヒット";
+  // --- 座席マップから席番号を直接検索（名簿未登録でもヒット）---
+  const seatHits = [];
+  Object.keys(seatEls).forEach(sid => {
+    if (sid.toLowerCase().includes(qLower)) {
+      // 名簿に既に含まれている席は重複させない
+      const alreadyInHits = hits.some(g => g.seat === sid);
+      if (!alreadyInHits) {
+        seatHits.push(sid);
+      }
+    }
+  });
 
-  if (hits.length === 0) {
+  const totalHits = hits.length + seatHits.length;
+  countEl.textContent = totalHits + " 件ヒット";
+
+  if (totalHits === 0) {
     resEl.innerHTML = '<p class="empty">該当する方が見つかりません</p>';
     return;
   }
 
-  resEl.innerHTML = hits.map(g => {
+  // --- カード表示：名簿登録者 ---
+  let html = hits.map(g => {
     const detail = [g.org, g.title].filter(x=>x).join("　");
     const hName   = hl(g.name, q);
     const hKana   = (toKata(g.kana).includes(qK)) ? hl(g.kana, toKata(q)) : hl(g.kana, q);
@@ -536,14 +551,37 @@ function search(){
     </div>`;
   }).join("");
 
-  // マップハイライト
+  // --- カード表示：名簿未登録の席 ---
+  html += seatHits.map(sid => {
+    return `
+    <div class="card">
+      <div class="info">
+        <div class="name" style="color:#999">（未登録）</div>
+      </div>
+      <div class="seat-box">
+        <div class="label">座席</div>
+        <div class="seat">${sid}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  resEl.innerHTML = html;
+
+  // --- マップハイライト ---
   hits.forEach(g => {
     if (seatEls[g.seat]) {
       seatEls[g.seat].classList.add("hit");
       seatEls[g.seat].style.background = "#e74c3c";
     }
   });
+  seatHits.forEach(sid => {
+    if (seatEls[sid]) {
+      seatEls[sid].classList.add("hit");
+      seatEls[sid].style.background = "#e74c3c";
+    }
+  });
 }
+
 
 </script>
 </body>
