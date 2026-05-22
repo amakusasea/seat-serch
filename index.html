@@ -471,12 +471,33 @@ function clearSearch(){
   search();
 }
 
+// --- 席番号のマッチ判定（完全一致 or 前方＋区切り一致）---
+function seatMatch(seatId, query) {
+  const s = seatId.toLowerCase();
+  const q = query.toLowerCase();
+  // 完全一致
+  if (s === q) return true;
+  // クエリがハイフンで終わる場合は前方一致（例："u-" → U列全部）
+  if (q.endsWith("-") && s.startsWith(q)) return true;
+  // クエリにハイフンが含まれ数字で終わる場合は完全一致のみ
+  if (q.includes("-") && /\d$/.test(q)) return s === q;
+  // アルファベットだけの場合（例："u"）はアルファベット部分が一致
+  if (/^[a-z]+$/i.test(q)) return s.startsWith(q.toLowerCase() + "-");
+  // 数字だけの場合は席番号の数字部分と完全一致
+  if (/^\d+$/.test(q)) {
+    const num = s.split("-")[1];
+    return num === q;
+  }
+  return false;
+}
+
 function search(){
   const q = qEl.value.trim();
 
   // マップリセット（カテゴリー色に戻す）
   Object.entries(seatEls).forEach(([sid, el]) => {
     el.classList.remove("hit");
+    el.classList.remove("selected");
     const g = seatToGuest[sid];
     if (g && g.cat && catColorMap[g.cat]) {
       el.style.background = catColorMap[g.cat];
@@ -505,15 +526,14 @@ function search(){
     if (g.cat.includes(q))   return true;
     if (g.org.includes(q))   return true;
     if (g.title.includes(q)) return true;
-    if (g.seat.toLowerCase().includes(qLower)) return true;
+    if (seatMatch(g.seat, q)) return true;
     return false;
   });
 
   // --- 座席マップから席番号を直接検索（名簿未登録でもヒット）---
   const seatHits = [];
   Object.keys(seatEls).forEach(sid => {
-    if (sid.toLowerCase().includes(qLower)) {
-      // 名簿に既に含まれている席は重複させない
+    if (seatMatch(sid, q)) {
       const alreadyInHits = hits.some(g => g.seat === sid);
       if (!alreadyInHits) {
         seatHits.push(sid);
@@ -529,15 +549,15 @@ function search(){
     return;
   }
 
-  // --- カード表示：名簿登録者 ---
-  let html = hits.map(g => {
+  // --- カード表示：名簿登録者（タップで選択可能）---
+  let html = hits.map((g, i) => {
     const detail = [g.org, g.title].filter(x=>x).join("　");
     const hName   = hl(g.name, q);
     const hKana   = (toKata(g.kana).includes(qK)) ? hl(g.kana, toKata(q)) : hl(g.kana, q);
     const hDetail = hl(detail, q);
     const color   = getCatColor(g.cat);
     return `
-    <div class="card">
+    <div class="card" onclick="selectSeat('${g.seat}', this)" style="cursor:pointer">
       <div class="info">
         <div class="name">${hName}</div>
         <div class="kana">${hKana}</div>
@@ -551,10 +571,10 @@ function search(){
     </div>`;
   }).join("");
 
-  // --- カード表示：名簿未登録の席 ---
+  // --- カード表示：名簿未登録の席（タップで選択可能）---
   html += seatHits.map(sid => {
     return `
-    <div class="card">
+    <div class="card" onclick="selectSeat('${sid}', this)" style="cursor:pointer">
       <div class="info">
         <div class="name" style="color:#999">（未登録）</div>
       </div>
@@ -567,7 +587,7 @@ function search(){
 
   resEl.innerHTML = html;
 
-  // --- マップハイライト ---
+  // --- マップハイライト（全ヒット席を薄くハイライト）---
   hits.forEach(g => {
     if (seatEls[g.seat]) {
       seatEls[g.seat].classList.add("hit");
@@ -581,6 +601,40 @@ function search(){
     }
   });
 }
+
+// ============================================================
+//  カード選択 → その席だけをマップで強調＋スクロール
+// ============================================================
+let selectedCard = null;
+
+function selectSeat(seatId, cardEl) {
+  // 前の選択を解除
+  if (selectedCard) {
+    selectedCard.style.borderLeft = "";
+  }
+
+  // 全席のハイライトを一旦弱める
+  Object.entries(seatEls).forEach(([sid, el]) => {
+    el.classList.remove("selected");
+    if (el.classList.contains("hit")) {
+      el.style.background = "#f5a0a0";  // 薄い赤
+    }
+  });
+
+  // 選択した席だけ強調
+  if (seatEls[seatId]) {
+    seatEls[seatId].classList.add("selected");
+    seatEls[seatId].style.background = "#e74c3c";
+
+    // マップの席位置までスクロール
+    seatEls[seatId].scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  // カードにも選択表示
+  cardEl.style.borderLeft = "4px solid #e74c3c";
+  selectedCard = cardEl;
+}
+
 
 </script>
 </body>
