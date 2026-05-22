@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>席案内検索</title>
+<link rel="manifest" href="manifest.json">
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+  }
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Meiryo", sans-serif;
+    background: #f0f2f5; padding: 12px 12px 40px; max-width: 580px; margin: 0 auto;
+    -webkit-text-size-adjust: 100%;
+  }
+  h1 { text-align: center; font-size: 1.1rem; color: #333; margin: 10px 0 12px; }
+
+  .search-wrap { position: relative; }
+  #q {
+    width: 100%; font-size: 1.1rem; padding: 12px 40px 12px 14px;
+    border: 2px solid #ccc; border-radius: 10px;
+    -webkit-appearance: none; background: #fff;
+  }
+  #q:focus { border-color: #4a90d9; outline: none; }
+  .clear-btn {
+    position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    background: #ccc; color: #fff; border: none; border-radius: 50%;
+    width: 26px; height: 26px; font-size: 15px; cursor: pointer;
+    display: none; line-height: 26px; text-align: center;
+  }
+
+  .meta {
+    display: flex; justify-content: space-between;
+    font-size: 0.8rem; color: #888; margin: 8px 4px;
+  }
+
+  /* カテゴリーフィルターボタン */
+  .cat-filters {
+    display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;
+  }
+  .cat-btn {
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 20px;
+    border: none; color: #fff; cursor: pointer; opacity: 0.7;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+  .cat-btn:active { transform: scale(0.95); }
+  .cat-btn.active { opacity: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+
+  .card {
+    background: #fff; border-radius: 10px; padding: 12px 14px;
+    margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .info { flex: 1; min-width: 0; }
+  .info .name { font-size: 1.1rem; font-weight: bold; color: #222; }
+  .info .kana { font-size: 0.75rem; color: #aaa; margin-top: 1px; }
+  .info .detail { font-size: 0.82rem; color: #556; margin-top: 4px; line-height: 1.4; }
+  .info .cat-label {
+    display: inline-block; font-size: 0.7rem; color: #fff;
+    padding: 2px 8px; border-radius: 4px; margin-top: 5px;
+  }
+  .seat-box { text-align: center; margin-left: 14px; flex-shrink: 0; }
+  .seat-box .label { font-size: 0.65rem; color: #999; }
+  .seat-box .seat { font-size: 1.7rem; font-weight: bold; color: #d9534f; white-space: nowrap; }
+
+  mark { background: #fff3cd; color: inherit; border-radius: 2px; }
+  .empty { text-align: center; color: #aaa; margin-top: 48px; font-size: 0.95rem; }
+
+  /* ===== 座席マップ ===== */
+  .map-section {
+    margin-top: 20px; background: #fff; border-radius: 12px;
+    padding: 14px 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    overflow-x: auto;
+  }
+  .map-title {
+    text-align: center; font-size: 0.9rem; font-weight: bold; color: #555;
+    margin-bottom: 4px;
+  }
+  .map-legend {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+    margin: 6px 0 10px; font-size: 0.65rem; color: #666;
+  }
+  .map-legend span { display: flex; align-items: center; gap: 3px; }
+  .map-legend .swatch {
+    display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+  }
+  .floor-label {
+    text-align: center; font-size: 0.75rem; font-weight: bold; color: #fff;
+    background: #555; border-radius: 4px; padding: 3px 0; margin: 10px 0 6px;
+  }
+  .floor-label:first-child { margin-top: 0; }
+  .stage {
+    text-align: center; font-size: 0.7rem; color: #fff; background: #888;
+    border-radius: 4px; padding: 5px 0; margin-bottom: 8px; letter-spacing: 4px;
+  }
+  .row-wrap {
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 2px;
+  }
+  .row-label {
+    font-size: 0.5rem; color: #999; width: 22px; text-align: center; flex-shrink: 0;
+  }
+  .block { display: flex; gap: 1px; }
+  .block-gap { width: 6px; flex-shrink: 0; }
+  .st {
+    width: 11px; height: 11px; border-radius: 2px;
+    background: #d5dbe3; flex-shrink: 0;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .st.occupied { background: #a0b0c0; }
+  .st.hit {
+    box-shadow: 0 0 4px rgba(231,76,60,0.6);
+  }
+  .st.hit::after {
+    content: ""; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border: 2px solid #e74c3c; border-radius: 4px;
+    animation: pulse 1s ease-in-out infinite alternate;
+  }
+  @keyframes pulse { from { opacity:1; } to { opacity:0.3; } }
+
+  .tooltip {
+    display: none; position: fixed; background: #333; color: #fff;
+    font-size: 0.75rem; padding: 8px 12px; border-radius: 6px;
+    z-index: 100; pointer-events: none;
+    max-width: 280px; white-space: normal; line-height: 1.4;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* 席番号ポップアップ */
+  .seat-popup {
+    display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    background: #fff; border-radius: 16px; padding: 24px 32px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25); z-index: 200;
+    text-align: center; min-width: 200px;
+  }
+  .seat-popup .pop-seat { font-size: 2.2rem; font-weight: bold; color: #d9534f; }
+  .seat-popup .pop-name { font-size: 1rem; color: #333; margin-top: 8px; }
+  .seat-popup .pop-detail { font-size: 0.82rem; color: #777; margin-top: 4px; }
+  .seat-popup .pop-close {
+    margin-top: 16px; font-size: 0.85rem; padding: 6px 20px;
+    border: none; background: #eee; border-radius: 6px; cursor: pointer;
+  }
+  .overlay {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3); z-index: 199;
+  }
+</style>
+</head>
+<body>
+
+<h1>席案内検索</h1>
+
+<div class="search-wrap">
+  <input type="text" id="q" placeholder="氏名・フリガナ・役職・分類で検索" autofocus>
+  <button class="clear-btn" id="clearBtn" onclick="clearSearch()">×</button>
+</div>
+
+<div class="meta">
+  <span id="count"></span>
+  <span id="total"></span>
+</div>
+
+<!-- カテゴリーフィルターボタン（自動生成） -->
+<div class="cat-filters" id="catFilters"></div>
+
+<div id="results">
+  <p class="empty">名前の一部を入力してください</p>
+</div>
+
+<div class="map-section">
+  <div class="map-title">座席マップ（席をタップで詳細表示）</div>
+  <div class="map-legend" id="mapLegend"></div>
+  <div id="seatMap"></div>
+</div>
+
+<!-- 席タップ時のポップアップ -->
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="seat-popup" id="seatPopup">
+  <div class="pop-seat" id="popSeat"></div>
+  <div class="pop-name" id="popName"></div>
+  <div class="pop-detail" id="popDetail"></div>
+  <button class="pop-close" onclick="closePopup()">閉じる</button>
+</div>
+
+<!-- ツールチップ（PC用ホバー） -->
+<div class="tooltip" id="tooltip"></div>
+
+<!-- ★ データファイル読み込み ★ -->
+<script src="data.js"></script>
+
+<script>
+// ============================================================
+//  初期化
+// ============================================================
+guests.forEach(g => {
+  ["cat","org","title","name","kana","seat"].forEach(k => {
+    if (g[k] === "nan" || g[k] == null) g[k] = "";
+  });
+});
+
+const seatToGuest = {};
+guests.forEach(g => { if (g.seat) seatToGuest[g.seat] = g; });
+
+// ============================================================
+//  カテゴリー色の自動割り当て
+// ============================================================
+const CAT_COLORS = [
+  "#c0392b", "#2980b9", "#27ae60", "#8e44ad", "#d35400",
+  "#16a085", "#2c3e50", "#f39c12", "#e91e63", "#00897b",
+  "#5c6bc0", "#ef6c00", "#ad1457", "#00695c", "#4527a0"
+];
+
+// データから全カテゴリーを自動抽出
+const allCats = [...new Set(guests.map(g => g.cat).filter(c => c))];
+const catColorMap = {};
+allCats.forEach((cat, i) => {
+  catColorMap[cat] = CAT_COLORS[i % CAT_COLORS.length];
+});
+
+function getCatColor(cat) {
+  return catColorMap[cat] || "#6c8ebf";
+}
+
+// ============================================================
+//  カテゴリーフィルターボタン生成
+// ============================================================
+const catFiltersEl = document.getElementById("catFilters");
+let activeCatFilter = null;
+
+function buildCatFilters() {
+  catFiltersEl.innerHTML = allCats.map(cat =>
+    '<button class="cat-btn" data-cat="' + cat + '" style="background:' + getCatColor(cat) + '">' + cat + '</button>'
+  ).join("");
+
+  catFiltersEl.querySelectorAll(".cat-btn").forEach(btn => {
+    btn.addEventListener("click", function() {
+      if (activeCatFilter === this.dataset.cat) {
+        // 二度押しで解除
+        activeCatFilter = null;
+        this.classList.remove("active");
+        qEl.value = "";
+        search();
+      } else {
+        // カテゴリーで絞り込み
+        catFiltersEl.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+        activeCatFilter = this.dataset.cat;
+        qEl.value = this.dataset.cat;
+        clearBtn.style.display = "block";
+        search();
+      }
+    });
+  });
+}
+buildCatFilters();
+
+// ============================================================
+//  座席レイアウト定義
+// ============================================================
+const layout = {
+  "1F": {
+    label: "1階",
+    rows: [
+      {row:"1列",  left:[], center:[1,2,3,4,5,6,7,8,9,10,11,12], right:[13,14,15,16,17,18], prefix:"A"},
+      {row:"2列",  left:[], center:[1,2,3,4,5,6,7,8,9,10,11,12], right:[13,14,15,16,17,18,19], prefix:"B"},
+      {row:"3列",  left:[1,2,3,4,5], center:[6,7,8,9,10,11,12,13,14,15,16,17], right:[18,19,20,21,22,23,24,25], prefix:"C"},
+      {row:"4列",  left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"D"},
+      {row:"5列",  left:[1,2,3,4,5,6,7,8], center:[9,10,11,12,13,14,15,16,17,18,19,20], right:[21,22,23,24,25,26,27,28,29,30], prefix:"E"},
+      {row:"6列",  left:[1,2,3,4,5,6,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34], prefix:"F"},
+      {row:"7列",  left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"G"},
+      {row:"8列",  left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"H"},
+      {row:"9列",  left:[3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"I"},
+    ]
+  },
+  "2F": {
+    label: "2階",
+    rows: [
+      {row:"10列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"J"},
+      {row:"11列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"K"},
+      {row:"12列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"L"},
+      {row:"13列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33], prefix:"M"},
+      {row:"14列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"N"},
+      {row:"15列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"O"},
+      {row:"16列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"P"},
+    ]
+  },
+  "3F": {
+    label: "3階",
+    rows: [
+      {row:"17列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"Q"},
+      {row:"18列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"R"},
+      {row:"19列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"S"},
+      {row:"20列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"T"},
+      {row:"21列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"U"},
+      {row:"22列", left:[1,2,3,4,5,6,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34,35], prefix:"V"},
+    ]
+  }
+};
+
+// ============================================================
+//  座席マップ描画
+// ============================================================
+const mapEl       = document.getElementById("seatMap");
+const legendEl    = document.getElementById("mapLegend");
+const tooltipEl   = document.getElementById("tooltip");
+const overlayEl   = document.getElementById("overlay");
+const seatPopupEl = document.getElementById("seatPopup");
+const popSeatEl   = document.getElementById("popSeat");
+const popNameEl   = document.getElementById("popName");
+const popDetailEl = document.getElementById("popDetail");
+const seatEls = {};
+
+function buildMap() {
+  let html = '<div class="stage">ス テ ー ジ</div>';
+
+  for (const floorKey of ["1F","2F","3F"]) {
+    const floor = layout[floorKey];
+    html += '<div class="floor-label">' + floor.label + '</div>';
+
+    for (const r of floor.rows) {
+      html += '<div class="row-wrap">';
+      html += '<div class="row-label">' + r.row + '</div>';
+
+      // 左ブロック
+      html += '<div class="block">';
+      const leftPad = 12 - r.left.length;
+      for (let p = 0; p < leftPad; p++) html += '<div style="width:11px"></div>';
+      for (const n of r.left) {
+        const sid = r.prefix + "-" + n;
+        html += '<div class="st" data-seat="' + sid + '"></div>';
+      }
+      html += '</div><div class="block-gap"></div>';
+
+      // 中央ブロック
+      html += '<div class="block">';
+      for (const n of r.center) {
+        const sid = r.prefix + "-" + n;
+        html += '<div class="st" data-seat="' + sid + '"></div>';
+      }
+      html += '</div><div class="block-gap"></div>';
+
+      // 右ブロック
+      html += '<div class="block">';
+      for (const n of r.right) {
+        const sid = r.prefix + "-" + n;
+        html += '<div class="st" data-seat="' + sid + '"></div>';
+      }
+      const rightPad = 12 - r.right.length;
+      for (let p = 0; p < rightPad; p++) html += '<div style="width:11px"></div>';
+      html += '</div>';
+
+      html += '<div class="row-label">' + r.row + '</div>';
+      html += '</div>';
+    }
+  }
+  mapEl.innerHTML = html;
+
+  // DOM参照 & 着色
+  mapEl.querySelectorAll(".st[data-seat]").forEach(el => {
+    const sid = el.dataset.seat;
+    seatEls[sid] = el;
+    const g = seatToGuest[sid];
+    if (g) {
+      el.classList.add("occupied");
+      if (g.cat && catColorMap[g.cat]) {
+        el.style.background = catColorMap[g.cat];
+      }
+    }
+  });
+}
+
+buildMap();
+
+// 凡例
+function buildLegend() {
+  let html = '<span><span class="swatch" style="background:#d5dbe3"></span>空席</span>';
+  allCats.forEach(cat => {
+    html += '<span><span class="swatch" style="background:' + getCatColor(cat) + '"></span>' + cat + '</span>';
+  });
+  legendEl.innerHTML = html;
+}
+buildLegend();
+
+// ============================================================
+//  席タップ → ポップアップ表示
+// ============================================================
+mapEl.addEventListener("click", function(e) {
+  const el = e.target.closest(".st[data-seat]");
+  if (!el) return;
+  const sid = el.dataset.seat;
+  const g = seatToGuest[sid];
+
+  popSeatEl.textContent = sid;
+  if (g) {
+    popNameEl.textContent = g.name + "（" + g.kana + "）";
+    const detail = [g.cat, g.org, g.title].filter(x => x).join("／");
+    popDetailEl.textContent = detail;
+  } else {
+    popNameEl.textContent = "（未登録）";
+    popDetailEl.textContent = "";
+  }
+  overlayEl.style.display = "block";
+  seatPopupEl.style.display = "block";
+});
+
+function closePopup() {
+  overlayEl.style.display = "none";
+  seatPopupEl.style.display = "none";
+}
+
+// PCホバー用ツールチップ
+mapEl.addEventListener("pointerenter", function(e) {
+  const el = e.target.closest(".st[data-seat]");
+  if (!el) return;
+  const sid = el.dataset.seat;
+  const g = seatToGuest[sid];
+  tooltipEl.textContent = g ? sid + "　" + g.name : sid + "（空席）";
+  tooltipEl.style.display = "block";
+  const rect = el.getBoundingClientRect();
+  tooltipEl.style.left = Math.min(rect.left, window.innerWidth - 200) + "px";
+  tooltipEl.style.top  = (rect.top - 34) + "px";
+}, true);
+mapEl.addEventListener("pointerleave", function(e) {
+  if (e.target.closest(".st")) tooltipEl.style.display = "none";
+}, true);
+
+// ============================================================
+//  検索
+// ============================================================
+const qEl      = document.getElementById("q");
+const resEl    = document.getElementById("results");
+const countEl  = document.getElementById("count");
+const totalEl  = document.getElementById("total");
+const clearBtn = document.getElementById("clearBtn");
+
+totalEl.textContent = "全 " + guests.length + " 名";
+
+function toKata(s){ return s.replace(/[\u3041-\u3096]/g, c=>String.fromCharCode(c.charCodeAt(0)+0x60)); }
+function toHira(s){ return s.replace(/[\u30A1-\u30F6]/g, c=>String.fromCharCode(c.charCodeAt(0)-0x60)); }
+
+function hl(text, q) {
+  if (!q || !text) return text;
+  const idx = text.toLowerCase().indexOf(q.toLowerCase());
+  if (idx === -1) return text;
+  return text.substring(0,idx) + "<mark>" + text.substring(idx,idx+q.length) + "</mark>" + text.substring(idx+q.length);
+}
+
+qEl.addEventListener("input", function(){
+  clearBtn.style.display = this.value ? "block" : "none";
+  // カテゴリーボタンの解除
+  if (activeCatFilter && this.value !== activeCatFilter) {
+    activeCatFilter = null;
+    catFiltersEl.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+  }
+  search();
+});
+
+function clearSearch(){
+  qEl.value = "";
+  clearBtn.style.display = "none";
+  activeCatFilter = null;
+  catFiltersEl.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+  qEl.focus();
+  search();
+}
+
+function search(){
+  const q = qEl.value.trim();
+
+  // マップリセット（カテゴリー色に戻す）
+  Object.entries(seatEls).forEach(([sid, el]) => {
+    el.classList.remove("hit");
+    const g = seatToGuest[sid];
+    if (g && g.cat && catColorMap[g.cat]) {
+      el.style.background = catColorMap[g.cat];
+    } else if (g) {
+      el.style.background = "#a0b0c0";
+    } else {
+      el.style.background = "#d5dbe3";
+    }
+  });
+
+  if (!q) {
+    resEl.innerHTML = '<p class="empty">名前の一部を入力してください</p>';
+    countEl.textContent = "";
+    return;
+  }
+
+  const qK = toKata(q);
+  const qH = toHira(q);
+
+  const hits = guests.filter(g => {
+    if (g.name.includes(q)) return true;
+    const gK = toKata(g.kana), gH = toHira(g.kana);
+    if (gK.includes(qK) || gH.includes(qH)) return true;
+    if (g.cat.includes(q))   return true;
+    if (g.org.includes(q))   return true;
+    if (g.title.includes(q)) return true;
+    if (g.seat.includes(q))  return true;
+    return false;
+  });
+
+  countEl.textContent = hits.length + " 件ヒット";
+
+  if (hits.length === 0) {
+    resEl.innerHTML = '<p class="empty">該当する方が見つかりません</p>';
+    return;
+  }
+
+  resEl.innerHTML = hits.map(g => {
+    const detail = [g.org, g.title].filter(x=>x).join("　");
+    const hName   = hl(g.name, q);
+    const hKana   = (toKata(g.kana).includes(qK)) ? hl(g.kana, toKata(q)) : hl(g.kana, q);
+    const hDetail = hl(detail, q);
+    const color   = getCatColor(g.cat);
+    return `
+    <div class="card">
+      <div class="info">
+        <div class="name">${hName}</div>
+        <div class="kana">${hKana}</div>
+        ${detail ? '<div class="detail">'+hDetail+'</div>' : ''}
+        ${g.cat ? '<span class="cat-label" style="background:'+color+'">'+g.cat+'</span>' : ''}
+      </div>
+      <div class="seat-box">
+        <div class="label">座席</div>
+        <div class="seat">${g.seat}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  // マップハイライト
+  hits.forEach(g => {
+    if (seatEls[g.seat]) {
+      seatEls[g.seat].classList.add("hit");
+      seatEls[g.seat].style.background = "#e74c3c";
+    }
+  });
+}
+</script>
+</body>
+</html>
