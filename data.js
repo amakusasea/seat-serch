@@ -1,25 +1,21 @@
-// ============================================================
-// カテゴリー色の定義
-// ============================================================
+/* カテゴリ色定義 */
 var catColors = {
-  "特別来賓":             "#FF0000",
-  "自治体首長・議長":     "#DA9694",
-  "天草市議会":           "#C0C0C0",
-  "その他来賓":           "#FFFF00",
-  "被表彰者":             "#FFCCFF",
-  "被表彰者（登壇者）":   "#FF6699",
-  "報道関係者":           "#7030A0",
-  "地区振興会長、区長":   "#00BFFF",
-  "部長、支所長":         "#0000FF",
-  "支所職員":             "#0000FF",
-  "随行席":               "#E26B0A"
+  "特別来賓": "#FF0000",
+  "自治体首長・議長": "#DA9694",
+  "天草市議会": "#F2F2F2",
+  "その他来賓": "#FFFF00",
+  "被表彰者": "#FFCCFF",
+  "被表彰者（登壇者）": "#FF6699",
+  "報道関係者": "#7030A0",
+  "地区振興会長、区長": "#00BFFF",
+  "部長、支所長": "#0000FF",
+  "支所職員": "#0000FF",
+  "随行席": "#E26B0A"
 };
 
-// ============================================================
-// 名簿データ
-// ============================================================
+/* 名簿データ */
 var guests = [
-  // --- 被表彰者 E-22～E-30 ---
+  /* ─── 被表彰者 E22-30 ─── */
   {no:1, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-22"},
   {no:2, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-23"},
   {no:3, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-24"},
@@ -29,7 +25,7 @@ var guests = [
   {no:7, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-28"},
   {no:8, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-29"},
   {no:9, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"E-30"},
-  // --- 被表彰者 F-24～F-34 ---
+  /* ─── 被表彰者 F24-34 ─── */
   {no:10, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-24"},
   {no:11, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-25"},
   {no:12, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-26"},
@@ -41,7 +37,7 @@ var guests = [
   {no:18, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-32"},
   {no:19, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-33"},
   {no:20, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"F-34"},
-  // --- 被表彰者 G-25～G-36 ---
+  /* ─── 被表彰者 G25-36 ─── */
   {no:21, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-25"},
   {no:22, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-26"},
   {no:23, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-27"},
@@ -54,7 +50,7 @@ var guests = [
   {no:30, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-34"},
   {no:31, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-35"},
   {no:32, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"G-36"},
-  // --- 被表彰者 H-25～H-32 ---
+  /* ─── 被表彰者 H25-32 ─── */
   {no:33, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-25"},
   {no:34, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-26"},
   {no:35, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-27"},
@@ -63,12 +59,12 @@ var guests = [
   {no:38, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-30"},
   {no:39, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-31"},
   {no:40, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"H-32"},
-  // --- 被表彰者（登壇者）H-33～H-36 ---
+  /* ─── 被表彰者（登壇者） H33-36 ─── */
   {no:41, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"H-33"},
   {no:42, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"H-34"},
   {no:43, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"H-35"},
   {no:44, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"H-36"},
-  // --- 被表彰者（登壇者）I-25～I-36 ---
+  /* ─── 被表彰者（登壇者） I25-36 ─── */
   {no:45, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-25"},
   {no:46, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-26"},
   {no:47, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-27"},
@@ -81,14 +77,14 @@ var guests = [
   {no:54, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-34"},
   {no:55, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-35"},
   {no:56, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"I-36"},
-  // --- 報道関係者 J-22～J-27 ---
+  /* ─── 報道関係者 J22-27 ─── */
   {no:57, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-22"},
   {no:58, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-23"},
   {no:59, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-24"},
   {no:60, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-25"},
   {no:61, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-26"},
   {no:62, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"J-27"},
-  // --- 地区振興会長、区長 K-1～K-27 ---
+  /* ─── 地区振興会長、区長 K1-K27 ─── */
   {no:63, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-1"},
   {no:64, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-2"},
   {no:65, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-3"},
@@ -116,7 +112,7 @@ var guests = [
   {no:87, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-25"},
   {no:88, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-26"},
   {no:89, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"K-27"},
-  // --- 地区振興会長、区長 L-1～L-27 ---
+  /* ─── 地区振興会長、区長 L1-L27 ─── */
   {no:90, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-1"},
   {no:91, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-2"},
   {no:92, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-3"},
@@ -144,7 +140,7 @@ var guests = [
   {no:114, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-25"},
   {no:115, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-26"},
   {no:116, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"L-27"},
-  // --- 地区振興会長、区長 M-7～M-33 ---
+  /* ─── 地区振興会長、区長 M7-M33 ─── */
   {no:117, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-7"},
   {no:118, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-8"},
   {no:119, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-9"},
@@ -172,7 +168,7 @@ var guests = [
   {no:141, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-31"},
   {no:142, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-32"},
   {no:143, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"M-33"},
-  // --- 地区振興会長、区長 N-7～N-33 ---
+  /* ─── 地区振興会長、区長 N7-N33 ─── */
   {no:144, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-7"},
   {no:145, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-8"},
   {no:146, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-9"},
@@ -200,7 +196,7 @@ var guests = [
   {no:168, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-31"},
   {no:169, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-32"},
   {no:170, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"N-33"},
-  // --- 地区振興会長、区長 O-7～O-33 ---
+  /* ─── 地区振興会長、区長 O7-O33 ─── */
   {no:171, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-7"},
   {no:172, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-8"},
   {no:173, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-9"},
@@ -228,7 +224,7 @@ var guests = [
   {no:195, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-31"},
   {no:196, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-32"},
   {no:197, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"O-33"},
-  // --- 地区振興会長、区長 P-7～P-33 ---
+  /* ─── 地区振興会長、区長 P7-P33 ─── */
   {no:198, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-7"},
   {no:199, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-8"},
   {no:200, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-9"},
@@ -256,7 +252,7 @@ var guests = [
   {no:222, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-31"},
   {no:223, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-32"},
   {no:224, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"P-33"},
-  // --- 地区振興会長、区長 Q-8～Q-20 ---
+  /* ─── 地区振興会長、区長 Q8-Q20 ─── */
   {no:225, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-8"},
   {no:226, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-9"},
   {no:227, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-10"},
@@ -270,35 +266,35 @@ var guests = [
   {no:235, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-18"},
   {no:236, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-19"},
   {no:237, cat:"地区振興会長、区長", org:"", title:"", name:"", kana:"", seat:"Q-20"},
-  // --- 部長、支所長 M-1～M-6 ---
+  /* ─── 部長、支所長 M1-M6 ─── */
   {no:238, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-1"},
   {no:239, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-2"},
   {no:240, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-3"},
   {no:241, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-4"},
   {no:242, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-5"},
   {no:243, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"M-6"},
-  // --- 部長、支所長 N-1～N-6 ---
+  /* ─── 部長、支所長 N1-N6 ─── */
   {no:244, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-1"},
   {no:245, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-2"},
   {no:246, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-3"},
   {no:247, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-4"},
   {no:248, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-5"},
   {no:249, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"N-6"},
-  // --- 部長、支所長 O-1～O-6 ---
+  /* ─── 部長、支所長 O1-O6 ─── */
   {no:250, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-1"},
   {no:251, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-2"},
   {no:252, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-3"},
   {no:253, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-4"},
   {no:254, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-5"},
   {no:255, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"O-6"},
-  // --- 部長、支所長 P-1～P-6 ---
+  /* ─── 部長、支所長 P1-P6 ─── */
   {no:256, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-1"},
   {no:257, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-2"},
   {no:258, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-3"},
   {no:259, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-4"},
   {no:260, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-5"},
   {no:261, cat:"部長、支所長", org:"", title:"", name:"", kana:"", seat:"P-6"},
-  // --- 支所職員 Q-1～Q-7 ---
+  /* ─── 支所職員 Q1-Q7 ─── */
   {no:262, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-1"},
   {no:263, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-2"},
   {no:264, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-3"},
@@ -306,19 +302,19 @@ var guests = [
   {no:266, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-5"},
   {no:267, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-6"},
   {no:268, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"Q-7"},
-  // --- 支所職員 N-34～N-36 ---
+  /* ─── 支所職員 N34-N36 ─── */
   {no:269, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"N-34"},
   {no:270, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"N-35"},
   {no:271, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"N-36"},
-  // --- 支所職員 O-34～O-36 ---
+  /* ─── 支所職員 O34-O36 ─── */
   {no:272, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"O-34"},
   {no:273, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"O-35"},
   {no:274, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"O-36"},
-  // --- 支所職員 P-34～P-36 ---
+  /* ─── 支所職員 P34-P36 ─── */
   {no:275, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"P-34"},
   {no:276, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"P-35"},
   {no:277, cat:"支所職員", org:"", title:"", name:"", kana:"", seat:"P-36"},
-  // --- 随行席 Q-25～Q-36 ---
+  /* ─── 随行席 Q25-Q36 ─── */
   {no:278, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-25"},
   {no:279, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-26"},
   {no:280, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-27"},
@@ -331,7 +327,7 @@ var guests = [
   {no:287, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-34"},
   {no:288, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-35"},
   {no:289, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"Q-36"},
-  // --- 随行席 R-25～R-36 ---
+  /* ─── 随行席 R25-R36 ─── */
   {no:290, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-25"},
   {no:291, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-26"},
   {no:292, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-27"},
@@ -344,7 +340,7 @@ var guests = [
   {no:299, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-34"},
   {no:300, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-35"},
   {no:301, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"R-36"},
-  // --- 随行席 S-25～S-36 ---
+  /* ─── 随行席 S25-S36 ─── */
   {no:302, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-25"},
   {no:303, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-26"},
   {no:304, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-27"},
@@ -357,91 +353,89 @@ var guests = [
   {no:311, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-34"},
   {no:312, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-35"},
   {no:313, cat:"随行席", org:"", title:"", name:"", kana:"", seat:"S-36"}
-  // ★★★ 来賓データはここに追加（Excelから貼り付け）★★★
 
-// ============================================================
-// 名簿データ（このファイルだけ差し替えれば更新完了）
-// ============================================================
-
-{no:1, cat:"特別来賓", org:"国土交通大臣", title:"衆議院議員", name:"金子　恭之", kana:"カネコ", seat:"C-12"},
+  // ★★★ 特別来賓、自治体首長・議長、天草市議会、その他来賓 等は
+  // ★★★ Excel から JSON 変換して以下に追加してください
+  // ★★★ 例: {no:314, cat:"特別来賓", org:"国土交通省", title:"衆議院議員", name:"田中太郎", kana:"タナカタロウ", seat:"A-1"},
+  {no:1, cat:"特別来賓", org:"国土交通大臣", title:"衆議院議員", name:"金子　恭之", kana:"カネコ", seat:"C-12"},
 {no:2, cat:"特別来賓", org:"", title:"衆議院議員", name:"吉田　宣弘", kana:"ヨシダ", seat:"C-11"},
 {no:3, cat:"特別来賓", org:"", title:"参議院議員", name:"馬場　成志", kana:"ババ", seat:"C-13"},
 {no:4, cat:"特別来賓", org:"", title:"参議院議員", name:"本田　顕子", kana:"ホンダ", seat:"C-14"},
 {no:5, cat:"特別来賓", org:"", title:"参議院議員", name:"犬童　周作", kana:"インドウ", seat:"C-15"},
 {no:6, cat:"特別来賓", org:"", title:"参議院議員松村祥史代理　秘書長", name:"畑山　登", kana:"ハタヤマ", seat:"C-16"},
-{no:7, cat:"特別来賓", org:"", title:"熊本県知事代理　天草広域本部本部長", name:"浦田　美紀", kana:"ウラタ", seat:"C-10"},
-{no:8, cat:"特別来賓", org:"", title:"熊本県議会議長代理　熊本県議会議員", name:"池田　和貴", kana:"イケダ", seat:"C-9"},
-{no:9, cat:"特別来賓", org:"", title:"熊本県議会議員", name:"楠本　千秋", kana:"クスモト", seat:"C-8"},
-{no:10, cat:"特別来賓", org:"", title:"熊本県議会議員", name:"山口　裕", kana:"ヤマグチ", seat:"C-7"},
-{no:11, cat:"県内市長及び議長", org:"", title:"熊本市副市長", name:"岡田　芳和", kana:"オカダ", seat:"C-21"},
-{no:12, cat:"県内市長及び議長", org:"", title:"八代市副市長", name:"平井　宏英", kana:"ヒライ", seat:"C-22"},
-{no:13, cat:"県内市長及び議長", org:"", title:"人吉市長", name:"松岡　隼人", kana:"マツオカ", seat:"C-23"},
-{no:14, cat:"県内市長及び議長", org:"", title:"荒尾市副市長", name:"石川　陽一", kana:"イシカワ", seat:"C-24"},
-{no:15, cat:"県内市長及び議長", org:"", title:"水俣市副市長", name:"緒方　雅一", kana:"オガタ", seat:"C-25"},
-{no:16, cat:"県内市長及び議長", org:"", title:"玉名市副市長", name:"吉田　勇人", kana:"ヨシダ", seat:"D-14"},
-{no:17, cat:"県内市長及び議長", org:"", title:"山鹿市副市長", name:"阿蘇品　貴司", kana:"アソシナ", seat:"D-15"},
-{no:18, cat:"県内市長及び議長", org:"", title:"菊池市副市長", name:"藤井　一恵", kana:"フジイ", seat:"D-16"},
-{no:19, cat:"県内市長及び議長", org:"", title:"宇土市長", name:"光井　正吾", kana:"ミツイ", seat:"D-17"},
-{no:20, cat:"県内市長及び議長", org:"", title:"上天草市長", name:"堀江　隆臣", kana:"ホリエ", seat:"C-19"},
-{no:21, cat:"県内市長及び議長", org:"", title:"宇城市副市長", name:"田村　真一", kana:"タムラ", seat:"D-18"},
-{no:22, cat:"県内市長及び議長", org:"", title:"阿蘇市副市長", name:"沖　圭一郎", kana:"オキ", seat:"D-19"},
-{no:23, cat:"県内市長及び議長", org:"", title:"合志市政策監", name:"吉村　幸一", kana:"ヨシムラ", seat:"D-20"},
-{no:24, cat:"関係団体の首長及び議長", org:"", title:"産山村長", name:"井　雄一郎", kana:"イ", seat:"D-21"},
-{no:25, cat:"関係団体の首長及び議長", org:"", title:"高森町長", name:"草村　大成", kana:"クサムラ", seat:"D-22"},
-{no:26, cat:"関係団体の首長及び議長", org:"", title:"苓北町長", name:"山﨑　秀典", kana:"ヤマサキ", seat:"C-20"},
-{no:27, cat:"関係団体の首長及び議長", org:"", title:"浦河町長", name:"松田　有宏", kana:"マツダ", seat:"D-23"},
-{no:28, cat:"関係団体の首長及び議長", org:"", title:"瀬戸市副市長", name:"大森　雅之", kana:"オオモリ", seat:"D-24"},
-{no:29, cat:"関係団体の首長及び議長", org:"", title:"南島原市副市長", name:"宮﨑　太", kana:"ミヤザキ", seat:"D-25"},
-{no:30, cat:"関係団体の首長及び議長", org:"", title:"出水市長", name:"椎木　伸一", kana:"シイキ", seat:"D-26"},
-{no:31, cat:"関係団体の首長及び議長", org:"", title:"長島町総務課長", name:"町口　真浩", kana:"マチグチ", seat:"D-27"},
-{no:32, cat:"県内市長及び議長", org:"", title:"熊本市議会副議長", name:"井本　正広", kana:"イモト", seat:"D-10"},
-{no:33, cat:"県内市長及び議長", org:"", title:"八代市議会議長", name:"髙山　正夫", kana:"タカヤマ", seat:"D-9"},
-{no:34, cat:"県内市長及び議長", org:"", title:"人吉市議会議長", name:"宮原　将志", kana:"ミヤハラ", seat:"D-8"},
-{no:35, cat:"県内市長及び議長", org:"", title:"荒尾市議会議長", name:"浜崎　英利", kana:"ハマサキ", seat:"D-7"},
-{no:36, cat:"県内市長及び議長", org:"", title:"水俣市議会副議長", name:"田口　憲雄", kana:"タグチ", seat:"E-21"},
-{no:37, cat:"県内市長及び議長", org:"", title:"玉名市議会議長", name:"西川　裕文", kana:"ニシカワ", seat:"E-20"},
-{no:38, cat:"県内市長及び議長", org:"", title:"山鹿市議会議長", name:"有働　辰喜", kana:"ウドウ", seat:"E-19"},
-{no:39, cat:"県内市長及び議長", org:"", title:"菊池市議会副議長", name:"泉田　栄一朗", kana:"イズミダ", seat:"E-18"},
-{no:40, cat:"県内市長及び議長", org:"", title:"宇土市議会議長", name:"野口　修一", kana:"ノグチ", seat:"E-17"},
-{no:41, cat:"県内市長及び議長", org:"", title:"上天草市議会議長", name:"嶋元　秀司", kana:"シマモト", seat:"D-12"},
-{no:42, cat:"県内市長及び議長", org:"", title:"宇城市議会議長", name:"豊田　紀代美", kana:"トヨダ", seat:"E-16"},
-{no:43, cat:"県内市長及び議長", org:"", title:"阿蘇市議会副議長", name:"谷﨑　利浩", kana:"タニザキ", seat:"E-15"},
-{no:44, cat:"関係団体の首長及び議長", org:"", title:"産山村議会議長", name:"西澤　正", kana:"ニシザワ", seat:"E-14"},
-{no:45, cat:"関係団体の首長及び議長", org:"", title:"高森町議会議長", name:"牛嶋　津世志", kana:"ウシジマ", seat:"E-13"},
-{no:46, cat:"関係団体の首長及び議長", org:"", title:"苓北町議会議長", name:"野﨑　幸洋", kana:"ノザキ", seat:"D-11"},
-{no:47, cat:"関係団体の首長及び議長", org:"", title:"浦河町議会議長", name:"米谷　友光", kana:"ヨネタニ", seat:"E-12"},
-{no:48, cat:"関係団体の首長及び議長", org:"", title:"瀬戸市議会議長", name:"髙島　淳", kana:"タカシマ", seat:"E-11"},
-{no:49, cat:"関係団体の首長及び議長", org:"", title:"雲仙市議会議長", name:"大久保　正美", kana:"オオクボ", seat:"E-10"},
-{no:50, cat:"関係団体の首長及び議長", org:"", title:"出水市議会議長", name:"北御門　伸彦", kana:"キタミカド", seat:"E-9"},
-{no:51, cat:"その他来賓", org:"", title:"天草市議会議長", name:"若山　敬介", kana:"ワカヤマ", seat:"C-2"},
-{no:52, cat:"その他来賓", org:"", title:"天草市議会副議長", name:"小川　圭三", kana:"オガワ", seat:"D-5"},
-{no:53, cat:"その他来賓", org:"", title:"天草市議会議員", name:"浜崎　昭臣", kana:"ハマサキ", seat:"D-4"},
-{no:54, cat:"その他来賓", org:"", title:"天草市議会議員", name:"勝木　幸生", kana:"カツキ", seat:"D-3"},
-{no:55, cat:"その他来賓", org:"", title:"天草市議会議員", name:"中尾　友二", kana:"ナカオ", seat:"D-2"},
-{no:56, cat:"その他来賓", org:"", title:"天草市議会議員", name:"宮下　幸一郎", kana:"ミヤシタ", seat:"D-1"},
-{no:57, cat:"その他来賓", org:"", title:"天草市議会議員", name:"濱洲　大心", kana:"ハマス", seat:"E-8"},
-{no:58, cat:"その他来賓", org:"", title:"天草市議会議員", name:"柴田　誠", kana:"シバタ", seat:"E-7"},
-{no:59, cat:"その他来賓", org:"", title:"天草市議会議員", name:"五通　俊作", kana:"ゴツウ", seat:"E-6"},
-{no:60, cat:"その他来賓", org:"", title:"天草市議会議員", name:"五嶋　善彦", kana:"ゴトウ", seat:"E-5"},
-{no:61, cat:"その他来賓", org:"", title:"天草市議会議員", name:"門口　徹", kana:"カドグチ", seat:"E-4"},
-{no:62, cat:"その他来賓", org:"", title:"天草市議会議員", name:"澤井　一富", kana:"サワイ", seat:"E-3"},
-{no:63, cat:"その他来賓", org:"", title:"天草市議会議員", name:"藤﨑　正博", kana:"フジサキ", seat:"E-2"},
-{no:64, cat:"その他来賓", org:"", title:"天草市議会議員", name:"蓑田　庸子", kana:"ミノダ", seat:"E-1"},
-{no:65, cat:"その他来賓", org:"", title:"天草市議会議員", name:"鯖江　達朗", kana:"サバエ", seat:"F-11"},
-{no:66, cat:"その他来賓", org:"", title:"天草市議会議員", name:"松岡　寿", kana:"マツオカ", seat:"F-10"},
-{no:67, cat:"その他来賓", org:"", title:"天草市議会議員", name:"浦本　力", kana:"ウラモト", seat:"F-9"},
-{no:68, cat:"その他来賓", org:"", title:"天草市議会議員", name:"竹本　亨", kana:"タケモト", seat:"F-8"},
-{no:69, cat:"その他来賓", org:"", title:"天草市議会議員", name:"赤城　史浩", kana:"アカギ", seat:"F-7"},
-{no:70, cat:"その他来賓", org:"", title:"天草市議会議員", name:"栁田　光芳", kana:"ヤナギダ", seat:"F-6"},
-{no:71, cat:"その他来賓", org:"", title:"天草市議会議員", name:"吉田　修", kana:"ヨシダ", seat:"F-5"},
-{no:72, cat:"その他来賓", org:"", title:"天草市議会議員", name:"生嶋　祥子", kana:"イクシマ", seat:"F-4"},
-{no:73, cat:"その他来賓", org:"", title:"天草市議会議員", name:"金子　馨", kana:"カネコ", seat:"F-3"},
-{no:74, cat:"その他来賓", org:"", title:"天草市議会議員", name:"植田　貴俊", kana:"ウエダ", seat:"F-2"},
-{no:75, cat:"その他来賓", org:"", title:"前天草市議会議員", name:"平山　泰司", kana:"ヒラヤマ", seat:"F-1"},
-{no:76, cat:"その他来賓", org:"", title:"前天草市議会議員", name:"船辺　修", kana:"フナベ", seat:"G-12"},
-{no:77, cat:"その他来賓", org:"", title:"前天草市議会議員", name:"鶴戸　継啓", kana:"ツルド", seat:"G-11"},
-{no:78, cat:"その他来賓", org:"", title:"前天草市議会議員", name:"下田　昇一郎", kana:"シモダ", seat:"G-10"},
-{no:79, cat:"その他来賓", org:"", title:"前天草市議会議員", name:"前田　正之", kana:"マエダ", seat:"G-9"},
+{no:7, cat:"特別来賓", org:"熊本県知事代理", title:"天草広域本部本部長", name:"浦田　美紀", kana:"ウラタ", seat:"C-10"},
+{no:8, cat:"特別来賓", org:"熊本県議会議長代理", title:"熊本県議会議員", name:"池田　和貴", kana:"イケダ", seat:"C-9"},
+{no:9, cat:"特別来賓", org:"熊本県議会", title:"議員", name:"楠本　千秋", kana:"クスモト", seat:"C-8"},
+{no:10, cat:"特別来賓", org:"熊本県議会", title:"議員", name:"山口　裕", kana:"ヤマグチ", seat:"C-7"},
+{no:11, cat:"自治体首長・議長", org:"熊本市", title:"副市長", name:"岡田　芳和", kana:"オカダ", seat:"C-21"},
+{no:12, cat:"自治体首長・議長", org:"八代市", title:"副市長", name:"平井　宏英", kana:"ヒライ", seat:"C-22"},
+{no:13, cat:"自治体首長・議長", org:"人吉市", title:"市長", name:"松岡　隼人", kana:"マツオカ", seat:"C-23"},
+{no:14, cat:"自治体首長・議長", org:"荒尾市", title:"副市長", name:"石川　陽一", kana:"イシカワ", seat:"C-24"},
+{no:15, cat:"自治体首長・議長", org:"水俣市", title:"副市長", name:"緒方　雅一", kana:"オガタ", seat:"C-25"},
+{no:16, cat:"自治体首長・議長", org:"玉名市", title:"副市長", name:"吉田　勇人", kana:"ヨシダ", seat:"D-14"},
+{no:17, cat:"自治体首長・議長", org:"山鹿市", title:"副市長", name:"阿蘇品　貴司", kana:"アソシナ", seat:"D-15"},
+{no:18, cat:"自治体首長・議長", org:"菊池市", title:"副市長", name:"藤井　一恵", kana:"フジイ", seat:"D-16"},
+{no:19, cat:"自治体首長・議長", org:"宇土市", title:"市長", name:"光井　正吾", kana:"ミツイ", seat:"D-17"},
+{no:20, cat:"自治体首長・議長", org:"上天草市", title:"市長", name:"堀江　隆臣", kana:"ホリエ", seat:"C-19"},
+{no:21, cat:"自治体首長・議長", org:"宇城市", title:"副市長", name:"田村　真一", kana:"タムラ", seat:"D-18"},
+{no:22, cat:"自治体首長・議長", org:"阿蘇市", title:"副市長", name:"沖　圭一郎", kana:"オキ", seat:"D-19"},
+{no:23, cat:"自治体首長・議長", org:"合志市", title:"政策監", name:"吉村　幸一", kana:"ヨシムラ", seat:"D-20"},
+{no:24, cat:"自治体首長・議長", org:"産山村", title:"村長", name:"井　雄一郎", kana:"イ", seat:"D-21"},
+{no:25, cat:"自治体首長・議長", org:"高森町", title:"町長", name:"草村　大成", kana:"クサムラ", seat:"D-22"},
+{no:26, cat:"自治体首長・議長", org:"苓北町", title:"町長", name:"山﨑　秀典", kana:"ヤマサキ", seat:"C-20"},
+{no:27, cat:"自治体首長・議長", org:"浦河町", title:"町長", name:"松田　有宏", kana:"マツダ", seat:"D-23"},
+{no:28, cat:"自治体首長・議長", org:"瀬戸市", title:"副市長", name:"大森　雅之", kana:"オオモリ", seat:"D-24"},
+{no:29, cat:"自治体首長・議長", org:"南島原市", title:"副市長", name:"宮﨑　太", kana:"ミヤザキ", seat:"D-25"},
+{no:30, cat:"自治体首長・議長", org:"出水市", title:"市長", name:"椎木　伸一", kana:"シイキ", seat:"D-26"},
+{no:31, cat:"自治体首長・議長", org:"長島町", title:"総務課長", name:"町口　真浩", kana:"マチグチ", seat:"D-27"},
+{no:32, cat:"自治体首長・議長", org:"熊本市議会", title:"副議長", name:"井本　正広", kana:"イモト", seat:"D-10"},
+{no:33, cat:"自治体首長・議長", org:"八代市議会", title:"議長", name:"髙山　正夫", kana:"タカヤマ", seat:"D-9"},
+{no:34, cat:"自治体首長・議長", org:"人吉市議会", title:"議長", name:"宮原　将志", kana:"ミヤハラ", seat:"D-8"},
+{no:35, cat:"自治体首長・議長", org:"荒尾市議会", title:"議長", name:"浜崎　英利", kana:"ハマサキ", seat:"D-7"},
+{no:36, cat:"自治体首長・議長", org:"水俣市議会", title:"副議長", name:"田口　憲雄", kana:"タグチ", seat:"E-21"},
+{no:37, cat:"自治体首長・議長", org:"玉名市議会", title:"議長", name:"西川　裕文", kana:"ニシカワ", seat:"E-20"},
+{no:38, cat:"自治体首長・議長", org:"山鹿市議会", title:"議長", name:"有働　辰喜", kana:"ウドウ", seat:"E-19"},
+{no:39, cat:"自治体首長・議長", org:"菊池市議会", title:"副議長", name:"泉田　栄一朗", kana:"イズミダ", seat:"E-18"},
+{no:40, cat:"自治体首長・議長", org:"宇土市議会", title:"議長", name:"野口　修一", kana:"ノグチ", seat:"E-17"},
+{no:41, cat:"自治体首長・議長", org:"上天草市議会", title:"議長", name:"嶋元　秀司", kana:"シマモト", seat:"D-12"},
+{no:42, cat:"自治体首長・議長", org:"宇城市議会", title:"議長", name:"豊田　紀代美", kana:"トヨダ", seat:"E-16"},
+{no:43, cat:"自治体首長・議長", org:"阿蘇市議会", title:"副議長", name:"谷﨑　利浩", kana:"タニザキ", seat:"E-15"},
+{no:44, cat:"自治体首長・議長", org:"産山村議会", title:"議長", name:"西澤　正", kana:"ニシザワ", seat:"E-14"},
+{no:45, cat:"自治体首長・議長", org:"高森町議会", title:"議長", name:"牛嶋　津世志", kana:"ウシジマ", seat:"E-13"},
+{no:46, cat:"自治体首長・議長", org:"苓北町議会", title:"議長", name:"野﨑　幸洋", kana:"ノザキ", seat:"D-11"},
+{no:47, cat:"自治体首長・議長", org:"浦河町議会", title:"議長", name:"米谷　友光", kana:"ヨネタニ", seat:"E-12"},
+{no:48, cat:"自治体首長・議長", org:"瀬戸市議会", title:"議長", name:"髙島　淳", kana:"タカシマ", seat:"E-11"},
+{no:49, cat:"自治体首長・議長", org:"雲仙市議会", title:"議長", name:"大久保　正美", kana:"オオクボ", seat:"E-10"},
+{no:50, cat:"自治体首長・議長", org:"出水市議会", title:"議長", name:"北御門　伸彦", kana:"キタミカド", seat:"E-9"},
+{no:51, cat:"天草市議会", org:"天草市議会", title:"議長", name:"若山　敬介", kana:"ワカヤマ", seat:"C-2"},
+{no:52, cat:"天草市議会", org:"天草市議会", title:"副議長", name:"小川　圭三", kana:"オガワ", seat:"D-5"},
+{no:53, cat:"天草市議会", org:"天草市議会", title:"議員", name:"浜崎　昭臣", kana:"ハマサキ", seat:"D-4"},
+{no:54, cat:"天草市議会", org:"天草市議会", title:"議員", name:"勝木　幸生", kana:"カツキ", seat:"D-3"},
+{no:55, cat:"天草市議会", org:"天草市議会", title:"議員", name:"中尾　友二", kana:"ナカオ", seat:"D-2"},
+{no:56, cat:"天草市議会", org:"天草市議会", title:"議員", name:"宮下　幸一郎", kana:"ミヤシタ", seat:"D-1"},
+{no:57, cat:"天草市議会", org:"天草市議会", title:"議員", name:"濱洲　大心", kana:"ハマス", seat:"E-8"},
+{no:58, cat:"天草市議会", org:"天草市議会", title:"議員", name:"柴田　誠", kana:"シバタ", seat:"E-7"},
+{no:59, cat:"天草市議会", org:"天草市議会", title:"議員", name:"五通　俊作", kana:"ゴツウ", seat:"E-6"},
+{no:60, cat:"天草市議会", org:"天草市議会", title:"議員", name:"五嶋　善彦", kana:"ゴトウ", seat:"E-5"},
+{no:61, cat:"天草市議会", org:"天草市議会", title:"議員", name:"門口　徹", kana:"カドグチ", seat:"E-4"},
+{no:62, cat:"天草市議会", org:"天草市議会", title:"議員", name:"澤井　一富", kana:"サワイ", seat:"E-3"},
+{no:63, cat:"天草市議会", org:"天草市議会", title:"議員", name:"藤﨑　正博", kana:"フジサキ", seat:"E-2"},
+{no:64, cat:"天草市議会", org:"天草市議会", title:"議員", name:"蓑田　庸子", kana:"ミノダ", seat:"E-1"},
+{no:65, cat:"天草市議会", org:"天草市議会", title:"議員", name:"鯖江　達朗", kana:"サバエ", seat:"F-11"},
+{no:66, cat:"天草市議会", org:"天草市議会", title:"議員", name:"松岡　寿", kana:"マツオカ", seat:"F-10"},
+{no:67, cat:"天草市議会", org:"天草市議会", title:"議員", name:"浦本　力", kana:"ウラモト", seat:"F-9"},
+{no:68, cat:"天草市議会", org:"天草市議会", title:"議員", name:"竹本　亨", kana:"タケモト", seat:"F-8"},
+{no:69, cat:"天草市議会", org:"天草市議会", title:"議員", name:"赤城　史浩", kana:"アカギ", seat:"F-7"},
+{no:70, cat:"天草市議会", org:"天草市議会", title:"議員", name:"栁田　光芳", kana:"ヤナギダ", seat:"F-6"},
+{no:71, cat:"天草市議会", org:"天草市議会", title:"議員", name:"吉田　修", kana:"ヨシダ", seat:"F-5"},
+{no:72, cat:"天草市議会", org:"天草市議会", title:"議員", name:"生嶋　祥子", kana:"イクシマ", seat:"F-4"},
+{no:73, cat:"天草市議会", org:"天草市議会", title:"議員", name:"金子　馨", kana:"カネコ", seat:"F-3"},
+{no:74, cat:"天草市議会", org:"天草市議会", title:"議員", name:"植田　貴俊", kana:"ウエダ", seat:"F-2"},
+{no:75, cat:"天草市議会", org:"", title:"前天草市議会議員", name:"平山　泰司", kana:"ヒラヤマ", seat:"F-1"},
+{no:76, cat:"天草市議会", org:"", title:"前天草市議会議員", name:"船辺　修", kana:"フナベ", seat:"G-12"},
+{no:77, cat:"天草市議会", org:"", title:"前天草市議会議員", name:"鶴戸　継啓", kana:"ツルド", seat:"G-11"},
+{no:78, cat:"天草市議会", org:"", title:"前天草市議会議員", name:"下田　昇一郎", kana:"シモダ", seat:"G-10"},
+{no:79, cat:"天草市議会", org:"", title:"前天草市議会議員", name:"前田　正之", kana:"マエダ", seat:"G-9"},
 {no:80, cat:"その他来賓", org:"", title:"前天草市副市長", name:"金子　邦彦", kana:"カネコ", seat:"G-8"},
 {no:81, cat:"その他来賓", org:"", title:"前天草市教育長", name:"石井　二三男", kana:"イシイ", seat:"G-7"},
 {no:82, cat:"その他来賓", org:"本渡まちづくり協議会", title:"会長", name:"中川　竹治", kana:"ナカガワ", seat:"H-12"},
@@ -452,16 +446,6 @@ var guests = [
 {no:87, cat:"その他来賓", org:"五和まちづくり協議会", title:"会長", name:"井下　克也", kana:"イノシタ", seat:"H-7"},
 {no:88, cat:"その他来賓", org:"天草まちづくり協議会", title:"会長", name:"嶋田　順一", kana:"シマダ", seat:"H-6"},
 {no:89, cat:"その他来賓", org:"河浦まちづくり協議会", title:"会長", name:"野中　幸廣", kana:"ノナカ", seat:"H-5"},
-{no:90, cat:"その他来賓", org:"本渡地域代表", title:"行政区長", name:"野口　俊夫", kana:"ノグチ", seat:"Z-"},
-{no:91, cat:"その他来賓", org:"牛深地域代表", title:"行政区長", name:"井上　洋市", kana:"イノウエ", seat:"Z-"},
-{no:92, cat:"その他来賓", org:"有明地域代表", title:"行政区長", name:"鏡　秀寿", kana:"カガミ", seat:"Z-"},
-{no:93, cat:"その他来賓", org:"御所浦地域代表", title:"行政区長", name:"浦田　譲治", kana:"ウラタ", seat:"Z-"},
-{no:94, cat:"その他来賓", org:"倉岳地域代表", title:"行政区長", name:"福原　徳長", kana:"フクハラ", seat:"Z-"},
-{no:95, cat:"その他来賓", org:"栖本地域代表", title:"行政区長", name:"並﨑　一信", kana:"ナミザキ", seat:"Z-"},
-{no:96, cat:"その他来賓", org:"新和地域代表", title:"行政区長", name:"中村　三千人", kana:"ナカムラ", seat:"Z-"},
-{no:97, cat:"その他来賓", org:"五和地域代表", title:"行政区長", name:"田口　了一", kana:"タグチ", seat:"Z-"},
-{no:98, cat:"その他来賓", org:"天草地域代表", title:"行政区長", name:"夏　一幸", kana:"ナツ", seat:"Z-"},
-{no:99, cat:"その他来賓", org:"河浦地域代表", title:"行政区長", name:"登　和彦", kana:"ノボリ", seat:"Z-"},
 {no:100, cat:"その他来賓", org:"", title:"天草市農業委員会会長", name:"山下　和弘", kana:"ヤマシタ", seat:"H-1"},
 {no:101, cat:"その他来賓", org:"株式会社熊本県民テレビ天草通信部", title:"", name:"有江　武利", kana:"アリエ", seat:"J-22"},
 {no:102, cat:"その他来賓", org:"天草ケーブルネットワーク株式会社", title:"代表取締役", name:"西村　正治", kana:"ニシムラ", seat:"J-21"},
