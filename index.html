@@ -20,7 +20,6 @@
     -webkit-text-size-adjust: 100%;
   }
   h1 { text-align: center; font-size: 1.1rem; color: #333; margin: 10px 0 12px; }
-
   .search-wrap { position: relative; }
   #q {
     width: 100%; font-size: 1.1rem; padding: 12px 40px 12px 14px;
@@ -34,28 +33,19 @@
     width: 26px; height: 26px; font-size: 15px; cursor: pointer;
     display: none; line-height: 26px; text-align: center;
   }
-
-  .meta {
-    display: flex; justify-content: space-between;
-    font-size: 0.8rem; color: #888; margin: 8px 4px;
-  }
-
-  .cat-filters {
-    display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0;
-  }
+  .meta { display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin: 8px 4px; }
+  .cat-filters { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
   .cat-btn {
     font-size: 0.72rem; padding: 4px 10px; border-radius: 20px;
-    border: none; color: #fff; cursor: pointer; opacity: 0.7;
+    border: 1px solid #ccc; cursor: pointer; opacity: 0.7;
     -webkit-tap-highlight-color: transparent;
   }
-  .cat-btn.active { opacity: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
-
+  .cat-btn.active { opacity: 1; box-shadow: 0 1px 4px rgba(0,0,0,0.3); border-color: transparent; }
   .card {
     background: #fff; border-radius: 10px; padding: 12px 14px;
     margin-bottom: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     display: flex; justify-content: space-between; align-items: center;
-    cursor: pointer;
-    border-left: 4px solid transparent;
+    cursor: pointer; border-left: 4px solid transparent;
     -webkit-tap-highlight-color: transparent;
   }
   .card.selected-card { border-left-color: #e74c3c; background: #fef9f9; }
@@ -64,133 +54,65 @@
   .info .kana { font-size: 0.75rem; color: #aaa; margin-top: 1px; }
   .info .detail { font-size: 0.82rem; color: #556; margin-top: 4px; line-height: 1.4; }
   .info .cat-label {
-    display: inline-block; font-size: 0.7rem; color: #fff;
+    display: inline-block; font-size: 0.7rem;
     padding: 2px 8px; border-radius: 4px; margin-top: 5px;
+    border: 1px solid rgba(0,0,0,0.1);
   }
   .seat-box { text-align: center; margin-left: 14px; flex-shrink: 0; }
   .seat-box .label { font-size: 0.65rem; color: #999; }
   .seat-box .seat { font-size: 1.7rem; font-weight: bold; color: #d9534f; white-space: nowrap; }
-
   mark { background: #fff3cd; color: inherit; border-radius: 2px; }
   .empty { text-align: center; color: #aaa; margin-top: 48px; font-size: 0.95rem; }
-
   .map-section {
     margin-top: 20px; background: #fff; border-radius: 12px;
-    padding: 14px 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    overflow-x: auto;
+    padding: 14px 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); overflow-x: auto;
   }
-  .map-title {
-    text-align: center; font-size: 0.9rem; font-weight: bold; color: #555;
-    margin-bottom: 4px;
-  }
-  .map-legend {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-    margin: 6px 0 10px; font-size: 0.65rem; color: #666;
-  }
+  .map-title { text-align: center; font-size: 0.9rem; font-weight: bold; color: #555; margin-bottom: 4px; }
+  .map-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 6px 0 10px; font-size: 0.65rem; color: #666; }
   .map-legend span { display: flex; align-items: center; gap: 3px; }
-  .map-legend .swatch {
-    display: inline-block; width: 10px; height: 10px; border-radius: 2px;
-  }
-  .floor-label {
-    text-align: center; font-size: 0.75rem; font-weight: bold; color: #fff;
-    background: #555; border-radius: 4px; padding: 3px 0; margin: 10px 0 6px;
-  }
-  .stage {
-    text-align: center; font-size: 0.7rem; color: #fff; background: #888;
-    border-radius: 4px; padding: 5px 0; margin-bottom: 8px; letter-spacing: 4px;
-  }
-  .row-wrap {
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 2px;
-  }
-  .row-label {
-    font-size: 0.5rem; color: #999; width: 22px; text-align: center; flex-shrink: 0;
-  }
+  .map-legend .swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; border: 1px solid rgba(0,0,0,0.15); }
+  .floor-label { text-align: center; font-size: 0.75rem; font-weight: bold; color: #fff; background: #555; border-radius: 4px; padding: 3px 0; margin: 10px 0 6px; }
+  .stage { text-align: center; font-size: 0.7rem; color: #fff; background: #888; border-radius: 4px; padding: 5px 0; margin-bottom: 8px; letter-spacing: 4px; }
+  .row-wrap { display: flex; align-items: center; justify-content: center; margin-bottom: 2px; }
+  .row-label { font-size: 0.5rem; color: #999; width: 22px; text-align: center; flex-shrink: 0; }
   .block { display: flex; gap: 1px; }
   .block-gap { width: 6px; flex-shrink: 0; }
-  .st {
-    width: 11px; height: 11px; border-radius: 2px;
-    background: #d5dbe3; flex-shrink: 0;
-    position: relative;
-  }
-  .st.hit {
-    background: #e74c3c;
-    box-shadow: 0 0 4px rgba(231,76,60,0.6);
-  }
+  .st { width: 11px; height: 11px; border-radius: 2px; background: #d5dbe3; flex-shrink: 0; position: relative; }
+  .st.hit { background: #e74c3c; box-shadow: 0 0 4px rgba(231,76,60,0.6); }
   .st.selected {
-    background: #e74c3c !important;
-    box-shadow: 0 0 10px rgba(231,76,60,0.9);
-    -webkit-transform: scale(1.8);
-    transform: scale(1.8);
-    z-index: 10;
-    position: relative;
-    border-radius: 3px;
+    background: #e74c3c !important; box-shadow: 0 0 10px rgba(231,76,60,0.9);
+    -webkit-transform: scale(1.8); transform: scale(1.8); z-index: 10; position: relative; border-radius: 3px;
   }
   .st.selected::after {
     content: ""; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
     border: 3px solid #fff; border-radius: 5px;
-    -webkit-animation: pulse 0.8s ease-in-out infinite alternate;
-    animation: pulse 0.8s ease-in-out infinite alternate;
+    -webkit-animation: pulse 0.8s ease-in-out infinite alternate; animation: pulse 0.8s ease-in-out infinite alternate;
   }
   @-webkit-keyframes pulse { from { opacity:1; } to { opacity:0.3; } }
   @keyframes pulse { from { opacity:1; } to { opacity:0.3; } }
-
-  .tooltip {
-    display: none; position: fixed; background: #333; color: #fff;
-    font-size: 0.75rem; padding: 8px 12px; border-radius: 6px;
-    z-index: 100; pointer-events: none;
-    max-width: 280px; white-space: normal; line-height: 1.4;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-
-  .seat-popup {
-    display: none; position: fixed; top: 50%; left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    transform: translate(-50%,-50%);
-    background: #fff; border-radius: 16px; padding: 24px 32px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25); z-index: 200;
-    text-align: center; min-width: 200px;
-  }
+  .tooltip { display: none; position: fixed; background: #333; color: #fff; font-size: 0.75rem; padding: 8px 12px; border-radius: 6px; z-index: 100; pointer-events: none; max-width: 280px; white-space: normal; line-height: 1.4; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+  .seat-popup { display: none; position: fixed; top: 50%; left: 50%; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); background: #fff; border-radius: 16px; padding: 24px 32px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); z-index: 200; text-align: center; min-width: 200px; }
   .seat-popup .pop-seat { font-size: 2.2rem; font-weight: bold; color: #d9534f; }
   .seat-popup .pop-name { font-size: 1rem; color: #333; margin-top: 8px; }
   .seat-popup .pop-detail { font-size: 0.82rem; color: #777; margin-top: 4px; }
-  .seat-popup .pop-close {
-    margin-top: 16px; font-size: 0.85rem; padding: 6px 20px;
-    border: none; background: #eee; border-radius: 6px; cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .overlay {
-    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.3); z-index: 199;
-  }
+  .seat-popup .pop-close { margin-top: 16px; font-size: 0.85rem; padding: 6px 20px; border: none; background: #eee; border-radius: 6px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 199; }
 </style>
 </head>
 <body>
-
 <h1>席案内検索</h1>
-
 <div class="search-wrap">
-  <input type="text" id="q" placeholder="氏名・フリガナ・役職・分類・席番号" autofocus>
+  <input type="text" id="q" placeholder="氏名・フリガナ・役職・分類で検索" autofocus>
   <button class="clear-btn" id="clearBtn">×</button>
 </div>
-
-<div class="meta">
-  <span id="count"></span>
-  <span id="total"></span>
-</div>
-
+<div class="meta"><span id="count"></span><span id="total"></span></div>
 <div class="cat-filters" id="catFilters"></div>
-
-<div id="results">
-  <p class="empty">名前の一部を入力してください</p>
-</div>
-
+<div id="results"><p class="empty">名前の一部を入力してください</p></div>
 <div class="map-section">
   <div class="map-title">座席マップ（席をタップで詳細表示）</div>
   <div class="map-legend" id="mapLegend"></div>
   <div id="seatMap"></div>
 </div>
-
 <div class="overlay" id="overlay"></div>
 <div class="seat-popup" id="seatPopup">
   <div class="pop-seat" id="popSeat"></div>
@@ -198,17 +120,13 @@
   <div class="pop-detail" id="popDetail"></div>
   <button class="pop-close" id="popClose">閉じる</button>
 </div>
-
 <div class="tooltip" id="tooltip"></div>
-
 <script src="data.js"></script>
-
 <script>
 (function() {
   "use strict";
-
-  // --- 初期化 ---
   var i, g, el, sid, keys;
+
   for (i = 0; i < guests.length; i++) {
     g = guests[i];
     if (!g.cat || g.cat === "nan") g.cat = "";
@@ -225,11 +143,7 @@
   }
 
   // --- カテゴリー色 ---
-  var CAT_COLORS = [
-    "#c0392b", "#2980b9", "#27ae60", "#8e44ad", "#d35400",
-    "#16a085", "#2c3e50", "#f39c12", "#e91e63", "#00897b",
-    "#5c6bc0", "#ef6c00", "#ad1457", "#00695c", "#4527a0"
-  ];
+  var CAT_COLORS = ["#c0392b","#2980b9","#27ae60","#8e44ad","#d35400","#16a085","#2c3e50","#f39c12","#e91e63","#00897b","#5c6bc0","#ef6c00","#ad1457","#00695c","#4527a0"];
   var allCats = [];
   var catSeen = {};
   for (i = 0; i < guests.length; i++) {
@@ -240,462 +154,189 @@
   }
   var catColorMap = {};
   for (i = 0; i < allCats.length; i++) {
-    catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+    if (typeof catColors !== "undefined" && catColors[allCats[i]]) {
+      catColorMap[allCats[i]] = catColors[allCats[i]];
+    } else {
+      catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+    }
   }
-  function getCatColor(cat) {
-    return catColorMap[cat] || "#6c8ebf";
+  function getCatColor(cat) { return catColorMap[cat] || "#6c8ebf"; }
+
+  function isLightColor(hex) {
+    var c = hex.replace("#", "");
+    if (c.length === 3) c = c[0]+c[0]+c[1]+c[1]+c[2]+c[2];
+    var r = parseInt(c.substring(0,2), 16);
+    var gv = parseInt(c.substring(2,4), 16);
+    var b = parseInt(c.substring(4,6), 16);
+    return (r * 299 + gv * 587 + b * 114) / 1000 > 160;
   }
 
   // --- DOM ---
-  var qEl      = document.getElementById("q");
-  var resEl    = document.getElementById("results");
-  var countEl  = document.getElementById("count");
-  var totalEl  = document.getElementById("total");
-  var clearBtn = document.getElementById("clearBtn");
-  var catFiltersEl = document.getElementById("catFilters");
-  var mapEl       = document.getElementById("seatMap");
-  var legendEl    = document.getElementById("mapLegend");
-  var tooltipEl   = document.getElementById("tooltip");
-  var overlayEl   = document.getElementById("overlay");
-  var seatPopupEl = document.getElementById("seatPopup");
-  var popSeatEl   = document.getElementById("popSeat");
-  var popNameEl   = document.getElementById("popName");
-  var popDetailEl = document.getElementById("popDetail");
-  var popClose    = document.getElementById("popClose");
-
+  var qEl=document.getElementById("q"), resEl=document.getElementById("results"), countEl=document.getElementById("count"), totalEl=document.getElementById("total"), clearBtn=document.getElementById("clearBtn"), catFiltersEl=document.getElementById("catFilters"), mapEl=document.getElementById("seatMap"), legendEl=document.getElementById("mapLegend"), tooltipEl=document.getElementById("tooltip"), overlayEl=document.getElementById("overlay"), seatPopupEl=document.getElementById("seatPopup"), popSeatEl=document.getElementById("popSeat"), popNameEl=document.getElementById("popName"), popDetailEl=document.getElementById("popDetail"), popClose=document.getElementById("popClose");
   totalEl.textContent = "全 " + guests.length + " 名";
 
-  // --- カテゴリーフィルターボタン ---
+  // --- カテゴリーボタン ---
   var activeCatFilter = null;
   function buildCatFilters() {
     var html = "";
     for (i = 0; i < allCats.length; i++) {
-      html += '<button class="cat-btn" data-cat="' + allCats[i] + '" style="background:' + getCatColor(allCats[i]) + '">' + allCats[i] + '</button>';
+      var col = getCatColor(allCats[i]);
+      var txtCol = isLightColor(col) ? "#333" : "#fff";
+      html += '<button class="cat-btn" data-cat="' + allCats[i] + '" style="background:' + col + ';color:' + txtCol + '">' + allCats[i] + '</button>';
     }
     catFiltersEl.innerHTML = html;
   }
   buildCatFilters();
-
   catFiltersEl.addEventListener("click", function(e) {
-    var btn = findParentWithClass(e.target, "cat-btn");
+    var btn = findUp(e.target, "cat-btn");
     if (!btn) return;
     var cat = btn.getAttribute("data-cat");
-    if (activeCatFilter === cat) {
-      activeCatFilter = null;
-      btn.classList.remove("active");
-      qEl.value = "";
-      clearBtn.style.display = "none";
-      search();
-    } else {
-      var btns = catFiltersEl.querySelectorAll(".cat-btn");
-      for (var j = 0; j < btns.length; j++) btns[j].classList.remove("active");
-      btn.classList.add("active");
-      activeCatFilter = cat;
-      qEl.value = cat;
-      clearBtn.style.display = "block";
-      search();
-    }
+    if (activeCatFilter === cat) { activeCatFilter = null; btn.classList.remove("active"); qEl.value = ""; clearBtn.style.display = "none"; search(); }
+    else { var bs = catFiltersEl.querySelectorAll(".cat-btn"); for (var j=0;j<bs.length;j++) bs[j].classList.remove("active"); btn.classList.add("active"); activeCatFilter = cat; qEl.value = cat; clearBtn.style.display = "block"; search(); }
   });
 
-  // --- ユーティリティ ---
-  function findParentWithClass(el, cls) {
-    while (el) {
-      if (el.classList && el.classList.contains(cls)) return el;
-      el = el.parentElement;
-    }
-    return null;
-  }
+  function findUp(el, cls) { while(el){if(el.classList&&el.classList.contains(cls))return el;el=el.parentElement;} return null; }
+  function findUpAttr(el, attr) { while(el){if(el.getAttribute&&el.getAttribute(attr))return el;el=el.parentElement;} return null; }
 
-  function findParentWithAttr(el, attr) {
-    while (el) {
-      if (el.getAttribute && el.getAttribute(attr)) return el;
-      el = el.parentElement;
-    }
-    return null;
-  }
+  function toKata(s){var r="";for(var k=0;k<s.length;k++){var c=s.charCodeAt(k);r+=(c>=0x3041&&c<=0x3096)?String.fromCharCode(c+0x60):s[k];}return r;}
+  function toHira(s){var r="";for(var k=0;k<s.length;k++){var c=s.charCodeAt(k);r+=(c>=0x30A1&&c<=0x30F6)?String.fromCharCode(c-0x60):s[k];}return r;}
+  function hl(text,q){if(!q||!text)return text;var idx=text.toLowerCase().indexOf(q.toLowerCase());if(idx===-1)return text;return text.substring(0,idx)+"<mark>"+text.substring(idx,idx+q.length)+"</mark>"+text.substring(idx+q.length);}
 
-  function toKata(s) {
-    var result = "";
-    for (var k = 0; k < s.length; k++) {
-      var code = s.charCodeAt(k);
-      if (code >= 0x3041 && code <= 0x3096) {
-        result += String.fromCharCode(code + 0x60);
-      } else {
-        result += s[k];
-      }
-    }
-    return result;
-  }
-
-  function toHira(s) {
-    var result = "";
-    for (var k = 0; k < s.length; k++) {
-      var code = s.charCodeAt(k);
-      if (code >= 0x30A1 && code <= 0x30F6) {
-        result += String.fromCharCode(code - 0x60);
-      } else {
-        result += s[k];
-      }
-    }
-    return result;
-  }
-
-  function hl(text, q) {
-    if (!q || !text) return text;
-    var tLow = text.toLowerCase();
-    var qLow = q.toLowerCase();
-    var idx = tLow.indexOf(qLow);
-    if (idx === -1) return text;
-    return text.substring(0, idx) + "<mark>" + text.substring(idx, idx + q.length) + "</mark>" + text.substring(idx + q.length);
-  }
-
-  // --- 席番号マッチ（Safari対応版）---
   function seatMatch(seatId, query) {
     if (!seatId || !query) return false;
-    var s = seatId.toLowerCase();
-    var q = query.toLowerCase();
-
-    // 完全一致
+    var s = seatId.toLowerCase(), q = query.toLowerCase();
     if (s === q) return true;
-
-    // "u-" のようにハイフンで終わる → その列全部
-    if (q.charAt(q.length - 1) === "-" && s.indexOf(q) === 0) return true;
-
-    // ハイフンを含む場合（"u-2" など）→ 完全一致のみ
+    if (q.charAt(q.length-1)==="-" && s.indexOf(q)===0) return true;
     if (q.indexOf("-") !== -1) return s === q;
-
-    // アルファベットだけ（"u" など）→ その列全部
-    var isAlpha = true;
-    for (var k = 0; k < q.length; k++) {
-      var c = q.charCodeAt(k);
-      if (!((c >= 97 && c <= 122) || (c >= 65 && c <= 90))) { isAlpha = false; break; }
-    }
-    if (isAlpha && q.length > 0) return s.indexOf(q + "-") === 0;
-
-    // 数字だけ（"2" など）→ ハイフン後の数字と完全一致
-    var isNum = true;
-    for (var k = 0; k < q.length; k++) {
-      var c = q.charCodeAt(k);
-      if (c < 48 || c > 57) { isNum = false; break; }
-    }
-    if (isNum && q.length > 0) {
-      var dashIdx = s.indexOf("-");
-      if (dashIdx !== -1) {
-        var numPart = s.substring(dashIdx + 1);
-        return numPart === q;
-      }
-    }
-
+    var isAlpha=true; for(var k=0;k<q.length;k++){var c=q.charCodeAt(k);if(!((c>=97&&c<=122)||(c>=65&&c<=90))){isAlpha=false;break;}}
+    if (isAlpha && q.length>0) return s.indexOf(q+"-")===0;
+    var isNum=true; for(var k=0;k<q.length;k++){var c=q.charCodeAt(k);if(c<48||c>57){isNum=false;break;}}
+    if (isNum && q.length>0){var di=s.indexOf("-");if(di!==-1)return s.substring(di+1)===q;}
     return false;
   }
 
-  // --- 座席レイアウト ---
-  var layout = {
-    "1F": {
-      label: "1階",
-      rows: [
-        {row:"1列",  left:[], center:[1,2,3,4,5,6,7,8,9,10,11,12], right:[13,14,15,16,17,18], prefix:"A"},
-        {row:"2列",  left:[], center:[1,2,3,4,5,6,7,8,9,10,11,12], right:[13,14,15,16,17,18,19], prefix:"B"},
-        {row:"3列",  left:[1,2,3,4,5], center:[6,7,8,9,10,11,12,13,14,15,16,17], right:[18,19,20,21,22,23,24,25], prefix:"C"},
-        {row:"4列",  left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"D"},
-        {row:"5列",  left:[1,2,3,4,5,6,7,8], center:[9,10,11,12,13,14,15,16,17,18,19,20], right:[21,22,23,24,25,26,27,28,29,30], prefix:"E"},
-        {row:"6列",  left:[1,2,3,4,5,6,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34], prefix:"F"},
-        {row:"7列",  left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"G"},
-        {row:"8列",  left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"H"},
-        {row:"9列",  left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"I"}
-      ]
-    },
-    "2F": {
-      label: "2階",
-      rows: [
-        {row:"10列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"J"},
-        {row:"11列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"K"},
-        {row:"12列", left:[1,2,3,4,5,6], center:[7,8,9,10,11,12,13,14,15,16,17,18], right:[19,20,21,22,23,24,25,26,27], prefix:"L"},
-        {row:"13列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33], prefix:"M"},
-        {row:"14列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"N"},
-        {row:"15列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"O"},
-        {row:"16列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"P"}
-      ]
-    },
-    "3F": {
-      label: "3階",
-      rows: [
-        {row:"17列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"Q"},
-        {row:"18列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"R"},
-        {row:"19列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"S"},
-        {row:"20列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"T"},
-        {row:"21列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"U"},
-        {row:"22列", left:[1,2,3,4,5,6,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34,35], prefix:"V"}
-      ]
-    }
-  };
+  // --- レイアウト ---
+  var layout={"1F":{label:"1階",rows:[{row:"1列",left:[],center:[1,2,3,4,5,6,7,8,9,10,11,12],right:[13,14,15,16,17,18],prefix:"A"},{row:"2列",left:[],center:[1,2,3,4,5,6,7,8,9,10,11,12],right:[13,14,15,16,17,18,19],prefix:"B"},{row:"3列",left:[1,2,3,4,5],center:[6,7,8,9,10,11,12,13,14,15,16,17],right:[18,19,20,21,22,23,24,25],prefix:"C"},{row:"4列",left:[1,2,3,4,5,6],center:[7,8,9,10,11,12,13,14,15,16,17,18],right:[19,20,21,22,23,24,25,26,27],prefix:"D"},{row:"5列",left:[1,2,3,4,5,6,7,8],center:[9,10,11,12,13,14,15,16,17,18,19,20],right:[21,22,23,24,25,26,27,28,29,30],prefix:"E"},{row:"6列",left:[1,2,3,4,5,6,7,8,9,10,11],center:[12,13,14,15,16,17,18,19,20,21,22,23],right:[24,25,26,27,28,29,30,31,32,33,34],prefix:"F"},{row:"7列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"G"},{row:"8列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"H"},{row:"9列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"I"}]},"2F":{label:"2階",rows:[{row:"10列",left:[1,2,3,4,5,6],center:[7,8,9,10,11,12,13,14,15,16,17,18],right:[19,20,21,22,23,24,25,26,27],prefix:"J"},{row:"11列",left:[1,2,3,4,5,6],center:[7,8,9,10,11,12,13,14,15,16,17,18],right:[19,20,21,22,23,24,25,26,27],prefix:"K"},{row:"12列",left:[1,2,3,4,5,6],center:[7,8,9,10,11,12,13,14,15,16,17,18],right:[19,20,21,22,23,24,25,26,27],prefix:"L"},{row:"13列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33],prefix:"M"},{row:"14列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"N"},{row:"15列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"O"},{row:"16列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"P"}]},"3F":{label:"3階",rows:[{row:"17列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"Q"},{row:"18列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"R"},{row:"19列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"S"},{row:"20列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"T"},{row:"21列",left:[1,2,3,4,5,6,7,8,9,10,11,12],center:[13,14,15,16,17,18,19,20,21,22,23,24],right:[25,26,27,28,29,30,31,32,33,34,35,36],prefix:"U"},{row:"22列",left:[1,2,3,4,5,6,7,8,9,10,11],center:[12,13,14,15,16,17,18,19,20,21,22,23],right:[24,25,26,27,28,29,30,31,32,33,34,35],prefix:"V"}]}};
 
   // --- マップ描画 ---
   var seatEls = {};
   function buildMap() {
     var html = '<div class="stage">ス テ ー ジ</div>';
-    var floorKeys = ["1F","2F","3F"];
-    var f, ri, r, n, p, floor;
-
-    for (f = 0; f < floorKeys.length; f++) {
-      floor = layout[floorKeys[f]];
-      html += '<div class="floor-label">' + floor.label + '</div>';
-      for (ri = 0; ri < floor.rows.length; ri++) {
-        r = floor.rows[ri];
-        html += '<div class="row-wrap">';
-        html += '<div class="row-label">' + r.row + '</div>';
-
-        html += '<div class="block">';
-        var leftPad = 12 - r.left.length;
-        for (p = 0; p < leftPad; p++) html += '<div style="width:11px"></div>';
-        for (n = 0; n < r.left.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.left[n] + '"></div>';
-        }
-        html += '</div><div class="block-gap"></div>';
-
-        html += '<div class="block">';
-        for (n = 0; n < r.center.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.center[n] + '"></div>';
-        }
-        html += '</div><div class="block-gap"></div>';
-
-        html += '<div class="block">';
-        for (n = 0; n < r.right.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.right[n] + '"></div>';
-        }
-        var rightPad = 12 - r.right.length;
-        for (p = 0; p < rightPad; p++) html += '<div style="width:11px"></div>';
-        html += '</div>';
-
-        html += '<div class="row-label">' + r.row + '</div>';
-        html += '</div>';
+    var floorKeys=["1F","2F","3F"], f, ri, r, n, p, floor;
+    for (f=0;f<floorKeys.length;f++) {
+      floor=layout[floorKeys[f]];
+      html+='<div class="floor-label">'+floor.label+'</div>';
+      for (ri=0;ri<floor.rows.length;ri++) {
+        r=floor.rows[ri];
+        html+='<div class="row-wrap"><div class="row-label">'+r.row+'</div>';
+        html+='<div class="block">';
+        var lp=12-r.left.length; for(p=0;p<lp;p++) html+='<div style="width:11px"></div>';
+        for(n=0;n<r.left.length;n++) html+='<div class="st" data-seat="'+r.prefix+'-'+r.left[n]+'"></div>';
+        html+='</div><div class="block-gap"></div><div class="block">';
+        for(n=0;n<r.center.length;n++) html+='<div class="st" data-seat="'+r.prefix+'-'+r.center[n]+'"></div>';
+        html+='</div><div class="block-gap"></div><div class="block">';
+        for(n=0;n<r.right.length;n++) html+='<div class="st" data-seat="'+r.prefix+'-'+r.right[n]+'"></div>';
+        var rp=12-r.right.length; for(p=0;p<rp;p++) html+='<div style="width:11px"></div>';
+        html+='</div><div class="row-label">'+r.row+'</div></div>';
       }
     }
-    mapEl.innerHTML = html;
-
-    var allSt = mapEl.querySelectorAll(".st");
-    for (i = 0; i < allSt.length; i++) {
-      el = allSt[i];
-      sid = el.getAttribute("data-seat");
-      if (sid) {
-        seatEls[sid] = el;
-        g = seatToGuest[sid];
-        if (g) {
-          if (g.cat && catColorMap[g.cat]) {
-            el.style.background = catColorMap[g.cat];
-          } else {
-            el.style.background = "#a0b0c0";
-          }
-        }
-      }
-    }
+    mapEl.innerHTML=html;
+    var allSt=mapEl.querySelectorAll(".st");
+    for(i=0;i<allSt.length;i++){el=allSt[i];sid=el.getAttribute("data-seat");if(sid){seatEls[sid]=el;g=seatToGuest[sid];if(g&&g.cat&&catColorMap[g.cat]){el.style.background=catColorMap[g.cat];}else if(g){el.style.background="#a0b0c0";}}}
   }
   buildMap();
 
-  // 凡例
   function buildLegend() {
-    var html = '<span><span class="swatch" style="background:#d5dbe3"></span>空席</span>';
-    for (i = 0; i < allCats.length; i++) {
-      html += '<span><span class="swatch" style="background:' + getCatColor(allCats[i]) + '"></span>' + allCats[i] + '</span>';
-    }
-    legendEl.innerHTML = html;
+    var html='<span><span class="swatch" style="background:#d5dbe3"></span>空席</span>';
+    for(i=0;i<allCats.length;i++) html+='<span><span class="swatch" style="background:'+getCatColor(allCats[i])+'"></span>'+allCats[i]+'</span>';
+    legendEl.innerHTML=html;
   }
   buildLegend();
 
-  // --- マップ直接タップ → ポップアップ ---
-  mapEl.addEventListener("click", function(e) {
-    var el = findParentWithAttr(e.target, "data-seat");
-    if (!el || !el.classList.contains("st")) return;
-    var sid = el.getAttribute("data-seat");
-    var g = seatToGuest[sid];
-    popSeatEl.textContent = sid;
-    if (g) {
-      popNameEl.textContent = g.name + "（" + g.kana + "）";
-      var parts = [];
-      if (g.cat) parts.push(g.cat);
-      if (g.org) parts.push(g.org);
-      if (g.title) parts.push(g.title);
-      popDetailEl.textContent = parts.join("／");
-    } else {
-      popNameEl.textContent = "（未登録）";
-      popDetailEl.textContent = "";
-    }
-    overlayEl.style.display = "block";
-    seatPopupEl.style.display = "block";
+  // --- マップタップ → ポップアップ ---
+  mapEl.addEventListener("click",function(e){
+    var el=findUpAttr(e.target,"data-seat");
+    if(!el||!el.classList.contains("st"))return;
+    var sid=el.getAttribute("data-seat"), g=seatToGuest[sid];
+    popSeatEl.textContent=sid;
+    if(g){popNameEl.textContent=g.name?(g.name+"（"+g.kana+"）"):g.cat;var parts=[];if(g.cat)parts.push(g.cat);if(g.org)parts.push(g.org);if(g.title)parts.push(g.title);popDetailEl.textContent=parts.join("／");}
+    else{popNameEl.textContent="（未登録）";popDetailEl.textContent="";}
+    overlayEl.style.display="block";seatPopupEl.style.display="block";
   });
-
-  function closePopup() {
-    overlayEl.style.display = "none";
-    seatPopupEl.style.display = "none";
-  }
-  overlayEl.addEventListener("click", closePopup);
-  popClose.addEventListener("click", closePopup);
+  function closePopup(){overlayEl.style.display="none";seatPopupEl.style.display="none";}
+  overlayEl.addEventListener("click",closePopup);
+  popClose.addEventListener("click",closePopup);
 
   // --- 検索イベント ---
-  qEl.addEventListener("input", function() {
-    clearBtn.style.display = this.value ? "block" : "none";
-    if (activeCatFilter && this.value !== activeCatFilter) {
-      activeCatFilter = null;
-      var btns = catFiltersEl.querySelectorAll(".cat-btn");
-      for (var j = 0; j < btns.length; j++) btns[j].classList.remove("active");
-    }
+  qEl.addEventListener("input",function(){
+    clearBtn.style.display=this.value?"block":"none";
+    if(activeCatFilter&&this.value!==activeCatFilter){activeCatFilter=null;var bs=catFiltersEl.querySelectorAll(".cat-btn");for(var j=0;j<bs.length;j++)bs[j].classList.remove("active");}
     search();
   });
+  clearBtn.addEventListener("click",function(){qEl.value="";clearBtn.style.display="none";activeCatFilter=null;var bs=catFiltersEl.querySelectorAll(".cat-btn");for(var j=0;j<bs.length;j++)bs[j].classList.remove("active");qEl.focus();search();});
 
-  clearBtn.addEventListener("click", function() {
-    qEl.value = "";
-    clearBtn.style.display = "none";
-    activeCatFilter = null;
-    var btns = catFiltersEl.querySelectorAll(".cat-btn");
-    for (var j = 0; j < btns.length; j++) btns[j].classList.remove("active");
-    qEl.focus();
-    search();
-  });
+  function resetMap(){var ks=Object.keys(seatEls);for(var k=0;k<ks.length;k++){var s=ks[k],el=seatEls[s];el.classList.remove("hit");el.classList.remove("selected");var g=seatToGuest[s];if(g&&g.cat&&catColorMap[g.cat])el.style.background=catColorMap[g.cat];else if(g)el.style.background="#a0b0c0";else el.style.background="#d5dbe3";}}
 
-  // --- マップリセット ---
-  function resetMap() {
-    var keys = Object.keys(seatEls);
-    for (var k = 0; k < keys.length; k++) {
-      var s = keys[k];
-      var el = seatEls[s];
-      el.classList.remove("hit");
-      el.classList.remove("selected");
-      var g = seatToGuest[s];
-      if (g && g.cat && catColorMap[g.cat]) {
-        el.style.background = catColorMap[g.cat];
-      } else if (g) {
-        el.style.background = "#a0b0c0";
-      } else {
-        el.style.background = "#d5dbe3";
-      }
-    }
-  }
-
-  // --- 検索メイン ---
-  function search() {
-    var q = qEl.value.trim();
+  function search(){
+    var q=qEl.value.trim();
     resetMap();
-
-    if (!q) {
-      resEl.innerHTML = '<p class="empty">名前の一部を入力してください</p>';
-      countEl.textContent = "";
-      return;
+    if(!q){resEl.innerHTML='<p class="empty">名前の一部を入力してください</p>';countEl.textContent="";return;}
+    var qK=toKata(q),qH=toHira(q);
+    var hits=[];
+    for(i=0;i<guests.length;i++){
+      g=guests[i];
+      if(g.name&&g.name.indexOf(q)!==-1){hits.push(g);continue;}
+      if(g.kana){var gK=toKata(g.kana),gH=toHira(g.kana);if(gK.indexOf(qK)!==-1||gH.indexOf(qH)!==-1){hits.push(g);continue;}}
+      if(g.cat&&g.cat.indexOf(q)!==-1){hits.push(g);continue;}
+      if(g.org&&g.org.indexOf(q)!==-1){hits.push(g);continue;}
+      if(g.title&&g.title.indexOf(q)!==-1){hits.push(g);continue;}
+      if(seatMatch(g.seat,q)){hits.push(g);continue;}
     }
+    var seatHits=[];
+    keys=Object.keys(seatEls);
+    for(i=0;i<keys.length;i++){sid=keys[i];if(seatMatch(sid,q)){var found=false;for(var j=0;j<hits.length;j++){if(hits[j].seat===sid){found=true;break;}}if(!found)seatHits.push(sid);}}
+    var totalHits=hits.length+seatHits.length;
+    countEl.textContent=totalHits+" 件ヒット";
+    if(totalHits===0){resEl.innerHTML='<p class="empty">該当する方が見つかりません</p>';return;}
 
-    var qK = toKata(q);
-    var qH = toHira(q);
-
-    // 名簿から検索
-    var hits = [];
-    for (i = 0; i < guests.length; i++) {
-      g = guests[i];
-      if (g.name.indexOf(q) !== -1) { hits.push(g); continue; }
-      var gK = toKata(g.kana);
-      var gH = toHira(g.kana);
-      if (gK.indexOf(qK) !== -1 || gH.indexOf(qH) !== -1) { hits.push(g); continue; }
-      if (g.cat.indexOf(q) !== -1) { hits.push(g); continue; }
-      if (g.org.indexOf(q) !== -1) { hits.push(g); continue; }
-      if (g.title.indexOf(q) !== -1) { hits.push(g); continue; }
-      if (seatMatch(g.seat, q)) { hits.push(g); continue; }
+    var html="";
+    for(i=0;i<hits.length;i++){
+      g=hits[i];
+      var detail="";if(g.org&&g.title)detail=g.org+"　"+g.title;else if(g.org)detail=g.org;else if(g.title)detail=g.title;
+      var hName=hl(g.name,q);
+      var hKana=(g.kana&&toKata(g.kana).indexOf(qK)!==-1)?hl(g.kana,toKata(q)):hl(g.kana,q);
+      var hDetail=hl(detail,q);
+      var color=getCatColor(g.cat);
+      var labelColor=isLightColor(color)?"#333":"#fff";
+      html+='<div class="card" data-seat="'+g.seat+'"><div class="info">';
+      if(g.name)html+='<div class="name">'+hName+'</div>';
+      if(g.kana)html+='<div class="kana">'+hKana+'</div>';
+      if(detail)html+='<div class="detail">'+hDetail+'</div>';
+      if(g.cat)html+='<span class="cat-label" style="background:'+color+';color:'+labelColor+'">'+g.cat+'</span>';
+      html+='</div><div class="seat-box"><div class="label">座席</div><div class="seat">'+g.seat+'</div></div></div>';
     }
-
-    // 座席マップから席番号を直接検索
-    var seatHits = [];
-    keys = Object.keys(seatEls);
-    for (i = 0; i < keys.length; i++) {
-      sid = keys[i];
-      if (seatMatch(sid, q)) {
-        var found = false;
-        for (var j = 0; j < hits.length; j++) {
-          if (hits[j].seat === sid) { found = true; break; }
-        }
-        if (!found) seatHits.push(sid);
-      }
+    for(i=0;i<seatHits.length;i++){
+      html+='<div class="card" data-seat="'+seatHits[i]+'"><div class="info"><div class="name" style="color:#999">（未登録）</div></div><div class="seat-box"><div class="label">座席</div><div class="seat">'+seatHits[i]+'</div></div></div>';
     }
+    resEl.innerHTML=html;
 
-    var totalHits = hits.length + seatHits.length;
-    countEl.textContent = totalHits + " 件ヒット";
-
-    if (totalHits === 0) {
-      resEl.innerHTML = '<p class="empty">該当する方が見つかりません</p>';
-      return;
-    }
-
-    // カード表示
-    var html = "";
-    for (i = 0; i < hits.length; i++) {
-      g = hits[i];
-      var detail = "";
-      if (g.org && g.title) detail = g.org + "　" + g.title;
-      else if (g.org) detail = g.org;
-      else if (g.title) detail = g.title;
-      var hName = hl(g.name, q);
-      var hKana = (toKata(g.kana).indexOf(qK) !== -1) ? hl(g.kana, toKata(q)) : hl(g.kana, q);
-      var hDetail = hl(detail, q);
-      var color = getCatColor(g.cat);
-
-      html += '<div class="card" data-seat="' + g.seat + '">';
-      html += '<div class="info">';
-      html += '<div class="name">' + hName + '</div>';
-      html += '<div class="kana">' + hKana + '</div>';
-      if (detail) html += '<div class="detail">' + hDetail + '</div>';
-      if (g.cat) html += '<span class="cat-label" style="background:' + color + '">' + g.cat + '</span>';
-      html += '</div>';
-      html += '<div class="seat-box"><div class="label">座席</div><div class="seat">' + g.seat + '</div></div>';
-      html += '</div>';
-    }
-
-    for (i = 0; i < seatHits.length; i++) {
-      html += '<div class="card" data-seat="' + seatHits[i] + '">';
-      html += '<div class="info"><div class="name" style="color:#999">（未登録）</div></div>';
-      html += '<div class="seat-box"><div class="label">座席</div><div class="seat">' + seatHits[i] + '</div></div>';
-      html += '</div>';
-    }
-
-    resEl.innerHTML = html;
-
-    // マップハイライト
-    for (i = 0; i < hits.length; i++) {
-      if (seatEls[hits[i].seat]) {
-        seatEls[hits[i].seat].classList.add("hit");
-        seatEls[hits[i].seat].style.background = "#e74c3c";
-      }
-    }
-    for (i = 0; i < seatHits.length; i++) {
-      if (seatEls[seatHits[i]]) {
-        seatEls[seatHits[i]].classList.add("hit");
-        seatEls[seatHits[i]].style.background = "#e74c3c";
-      }
-    }
+    for(i=0;i<hits.length;i++){if(seatEls[hits[i].seat]){seatEls[hits[i].seat].classList.add("hit");seatEls[hits[i].seat].style.background="#e74c3c";}}
+    for(i=0;i<seatHits.length;i++){if(seatEls[seatHits[i]]){seatEls[seatHits[i]].classList.add("hit");seatEls[seatHits[i]].style.background="#e74c3c";}}
   }
 
-  // --- カード選択 → マップ強調＋スクロール ---
-  var selectedCard = null;
-
-  function selectSeat(seatId, cardEl) {
-    if (selectedCard) {
-      selectedCard.classList.remove("selected-card");
-    }
-    var keys = Object.keys(seatEls);
-    for (var k = 0; k < keys.length; k++) {
-      seatEls[keys[k]].classList.remove("selected");
-    }
-    if (seatEls[seatId]) {
-      seatEls[seatId].classList.add("selected");
-      setTimeout(function() {
-        seatEls[seatId].scrollIntoView({ behavior: "smooth", block: "center" });
-      }, 100);
-    }
-    cardEl.classList.add("selected-card");
-    selectedCard = cardEl;
+  // --- カード選択 ---
+  var selectedCard=null;
+  function selectSeat(seatId,cardEl){
+    if(selectedCard)selectedCard.classList.remove("selected-card");
+    var ks=Object.keys(seatEls);for(var k=0;k<ks.length;k++)seatEls[ks[k]].classList.remove("selected");
+    if(seatEls[seatId]){seatEls[seatId].classList.add("selected");setTimeout(function(){seatEls[seatId].scrollIntoView({behavior:"smooth",block:"center"});},100);}
+    cardEl.classList.add("selected-card");selectedCard=cardEl;
   }
-
-  // カードタップのイベント委任
-  resEl.addEventListener("click", function(e) {
-    var card = findParentWithAttr(e.target, "data-seat");
-    if (!card || !card.classList.contains("card")) return;
-    var seatId = card.getAttribute("data-seat");
-    if (seatId) selectSeat(seatId, card);
+  resEl.addEventListener("click",function(e){
+    var card=findUpAttr(e.target,"data-seat");
+    if(!card||!card.classList.contains("card"))return;
+    var seatId=card.getAttribute("data-seat");
+    if(seatId)selectSeat(seatId,card);
   });
 
 })();
