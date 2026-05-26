@@ -239,10 +239,27 @@
     }
   }
   var catColorMap = {};
-  for (i = 0; i < allCats.length; i++) {    catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+  for (i = 0; i < allCats.length; i++) {
+      if (catColors && catColors[allCats[i]]) {
+        catColorMap[allCats[i]] = catColors[allCats[i]];
+    } else {
+        catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+    }
   }
   function getCatColor(cat) {
     return catColorMap[cat] || "#6c8ebf";
+  }
+  function isLightColor(hex) {
+    if (!hex) return true;
+    hex = hex.replace("#", "");
+    if (hex.length === 3) hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+    var r = parseInt(hex.substring(0,2), 16);
+    var gv = parseInt(hex.substring(2,4), 16);
+    var b = parseInt(hex.substring(4,6), 16);
+    return (r * 299 + gv * 587 + b * 114) / 1000 > 160;
+  }
+  function getTextColor(cat) {
+    return isLightColor(getCatColor(cat)) ? "#222" : "#fff";
   }
 
   // --- DOM ---
@@ -269,7 +286,7 @@
   function buildCatFilters() {
     var html = "";
     for (i = 0; i < allCats.length; i++) {
-      html += '<button class="cat-btn" data-cat="' + allCats[i] + '" style="background:' + getCatColor(allCats[i]) + '">' + allCats[i] + '</button>';
+      html += '<button class="cat-btn" data-cat="' + allCats[i] + '" style="background:' + getCatColor(allCats[i]) + ';color:' + getTextColor(allCats[i]) + '">' + allCats[i] + '</button>';
     }
     catFiltersEl.innerHTML = html;
   }
@@ -638,7 +655,7 @@
       html += '<div class="name">' + hName + '</div>';
       html += '<div class="kana">' + hKana + '</div>';
       if (detail) html += '<div class="detail">' + hDetail + '</div>';
-      if (g.cat) html += '<span class="cat-label" style="background:' + color + '">' + g.cat + '</span>';
+      if (g.cat) html += '<span class="cat-label" style="background:' + color + ';color:' + getTextColor(g.cat) + '">' + g.cat + '</span>';
       html += '</div>';
       html += '<div class="seat-box"><div class="label">座席</div><div class="seat">' + g.seat + '</div></div>';
       html += '</div>';
