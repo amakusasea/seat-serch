@@ -76,7 +76,7 @@
 
   .map-section {
     margin-top: 20px; background: #fff; border-radius: 12px;
-    padding: 14px 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    padding: 14px 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     overflow-x: auto;
   }
   .map-title {
@@ -104,12 +104,12 @@
     margin-bottom: 2px;
   }
   .row-label {
-    font-size: 0.5rem; color: #999; width: 22px; text-align: center; flex-shrink: 0;
+    font-size: 0.45rem; color: #999; width: 18px; text-align: center; flex-shrink: 0;
   }
   .block { display: flex; gap: 1px; }
-  .block-gap { width: 6px; flex-shrink: 0; }
+  .block-gap { width: 4px; flex-shrink: 0; }
   .st {
-    width: 11px; height: 11px; border-radius: 2px;
+    width: 8px; height: 8px; border-radius: 1px;
     background: #d5dbe3; flex-shrink: 0;
     position: relative;
   }
@@ -463,7 +463,7 @@
 
         html += '<div class="block">';
         var leftPad = 12 - r.left.length;
-        for (p = 0; p < leftPad; p++) html += '<div style="width:11px"></div>';
+        for (p = 0; p < leftPad; p++) html += '<div style="width:8px"></div>';
         for (n = 0; n < r.left.length; n++) {
           html += '<div class="st" data-seat="' + r.prefix + '-' + r.left[n] + '"></div>';
         }
@@ -480,7 +480,7 @@
           html += '<div class="st" data-seat="' + r.prefix + '-' + r.right[n] + '"></div>';
         }
         var rightPad = 12 - r.right.length;
-        for (p = 0; p < rightPad; p++) html += '<div style="width:11px"></div>';
+        for (p = 0; p < rightPad; p++) html += '<div style="width:8px"></div>';
         html += '</div>';
 
         html += '<div class="row-label">' + r.row + '</div>';
