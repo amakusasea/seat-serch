@@ -224,19 +224,26 @@
     if (guests[i].seat) seatToGuest[guests[i].seat] = guests[i];
   }
 
-  // --- カテゴリー色 ---
-  var catColorMap = {};
-for (i = 0; i < allCats.length; i++) {
-  // data.js で色が指定されていればそれを使う、なければ自動割り当て
-  if (typeof catColors !== "undefined" && catColors[allCats[i]]) {
-    catColorMap[allCats[i]] = catColors[allCats[i]];
-  } else {
-    catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+// --- カテゴリー色 ---
+  var CAT_COLORS = [
+    "#c0392b", "#2980b9", "#27ae60", "#8e44ad", "#d35400",
+    "#16a085", "#2c3e50", "#f39c12", "#e91e63", "#00897b",
+    "#5c6bc0", "#ef6c00", "#ad1457", "#00695c", "#4527a0"
+  ];
+  var allCats = [];
+  var catSeen = {};
+  for (i = 0; i < guests.length; i++) {
+    if (guests[i].cat && !catSeen[guests[i].cat]) {
+      allCats.push(guests[i].cat);
+      catSeen[guests[i].cat] = true;
+    }
   }
-}
-function getCatColor(cat) {
-  return catColorMap[cat] || "#6c8ebf";
-}
+  var catColorMap = {};
+  for (i = 0; i < allCats.length; i++) {    catColorMap[allCats[i]] = CAT_COLORS[i % CAT_COLORS.length];
+  }
+  function getCatColor(cat) {
+    return catColorMap[cat] || "#6c8ebf";
+  }
 
   // --- DOM ---
   var qEl      = document.getElementById("q");
