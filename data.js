@@ -22,8 +22,8 @@ var catColors = {
 // ============================================================
 const guests = [
 {no:304, cat:"天草市", org:"天草市", title:"教育長", name:"平田　浩一", kana:"ヒラタ", seat:"3列-1"},
-{no:51, cat:"天草市議会", org:"天草市議会", title:"議長", name:"若山　敬介", kana:"ワカヤマ", seat:"3列-2"},
-{no:302, cat:"天草市", org:"天草市", title:"副市長", name:"野崎　真司", kana:"ノザキ", seat:"3列-3"},
+{no:51, cat:"天草市議会", org:"天草市議会", title:"議長", name:"若山　敬介", kana:"ワカヤマ", seat:"3列-3"},
+{no:302, cat:"天草市", org:"天草市", title:"副市長", name:"野崎　真司", kana:"ノザキ", seat:"3列-2"},
 {no:301, cat:"天草市", org:"天草市", title:"市長", name:"馬場　昭治", kana:"ババ", seat:"3列-4"},
 {no:306, cat:"警察", org:"", title:"", name:"警察", kana:"ケイサツ", seat:"3列-5"},
 {no:307, cat:"警察", org:"", title:"", name:"警察", kana:"ケイサツ", seat:"3列-6"},
