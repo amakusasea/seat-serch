@@ -29,7 +29,7 @@ const guests = [
 {no:307, cat:"警察", org:"", title:"", name:"警察", kana:"ケイサツ", seat:"3列-6"},
 {no:10, cat:"特別来賓", org:"熊本県議会", title:"議員", name:"山口　裕", kana:"ヤマグチ", seat:"3列-7"},
 {no:9, cat:"特別来賓", org:"熊本県議会", title:"議員", name:"楠本　千秋", kana:"クスモト", seat:"3列-8"},
-{no:8, cat:"特別来賓", org:"熊本県議会議長代理", title:"熊本県議会議員", name:"池田　和貴", kana:"イケダ", seat:"3列-9"},
+{no:8, cat:"特別来賓", org:"熊本県議会", title:"議員", name:"池田　和貴", kana:"イケダ", seat:"3列-9"},
 {no:7, cat:"特別来賓", org:"熊本県知事代理", title:"天草広域本部本部長", name:"浦田　美紀", kana:"ウラタ", seat:"3列-10"},
 {no:2, cat:"特別来賓", org:"", title:"衆議院議員", name:"吉田　宣弘", kana:"ヨシダ", seat:"3列-11"},
 {no:1, cat:"特別来賓", org:"国土交通大臣", title:"衆議院議員", name:"金子　恭之", kana:"カネコ", seat:"3列-12"},
