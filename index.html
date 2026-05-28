@@ -439,7 +439,7 @@
         {row:"19列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"19列"},
         {row:"20列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"20列"},
         {row:"21列", left:[1,2,3,4,5,6,7,8,9,10,11,12], center:[13,14,15,16,17,18,19,20,21,22,23,24], right:[25,26,27,28,29,30,31,32,33,34,35,36], prefix:"21列"},
-        {row:"22列", left:[1,2,3,4,5,6,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34,35], prefix:"22列"}
+        {row:"22列", left:[1,2,3,4,5,6,0,7,8,9,10,11], center:[12,13,14,15,16,17,18,19,20,21,22,23], right:[24,25,26,27,28,29,30,31,32,33,34,35], prefix:"22列"}
       ]
     }
   };
@@ -463,19 +463,32 @@
         var leftPad = 12 - r.left.length;
         for (p = 0; p < leftPad; p++) html += '<div style="width:8px"></div>';
         for (n = 0; n < r.left.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.left[n] + '"></div>';
+          if (r.left[n] === 0) {
+              html += '<div style="width:8px;height:8px;"></div>';
+          } else {
+            html += '<div class="st" data-seat="' + r.prefix + '-' + r.left[n] + '"></div>';
+          }
         }
         html += '</div><div class="block-gap"></div>';
 
         html += '<div class="block">';
         for (n = 0; n < r.center.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.center[n] + '"></div>';
+          if (r.center[n] === 0) {
+            html += '<div style="width:8px;height:8px;"></div>';
+          } else {
+            html += '<div class="st" data-seat="' + r.prefix + '-' + r.center[n] + '"></div>';
+          }
         }
+
         html += '</div><div class="block-gap"></div>';
 
         html += '<div class="block">';
         for (n = 0; n < r.right.length; n++) {
-          html += '<div class="st" data-seat="' + r.prefix + '-' + r.right[n] + '"></div>';
+          if (r.right[n] === 0) {
+            html += '<div style="width:8px;height:8px;"></div>';
+          } else {
+            html += '<div class="st" data-seat="' + r.prefix + '-' + r.right[n] + '"></div>';
+          }
         }
         var rightPad = 12 - r.right.length;
         for (p = 0; p < rightPad; p++) html += '<div style="width:8px"></div>';
