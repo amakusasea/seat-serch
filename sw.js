@@ -1,5 +1,5 @@
 // ★ データ更新時はバージョンを変える（v1 → v2 → v3 ...）
-const CACHE_NAME = "seat-search-v2";
+const CACHE_NAME = "seat-search-v3";
 
 const FILES = [
   "./",
