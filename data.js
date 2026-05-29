@@ -207,8 +207,8 @@ const guests = [
 {no:158, cat:"その他来賓", org:"天草市小中学校長会", title:"会長", name:"松原　康近", kana:"マツバラ　ヤスチカ", seat:"10列-18"},
 {no:102, cat:"その他来賓", org:"天草ケーブルネットワーク株式会社", title:"代表取締役", name:"西村　正治", kana:"ニシムラ", seat:"10列-19"},
 {no:101, cat:"その他来賓", org:"株式会社熊本県民テレビ天草通信部", title:"", name:"有江　武利", kana:"アリエ", seat:"10列-20"},
-
-
+{no:201, cat:"その他来賓", org:"株式会社肥後銀行", title:"天草ブロック長（天草支店長）", name:"松下　哲也", kana:"マツシタ", seat:"10列-21"},
+{no:202, cat:"その他来賓", org:"株式会社肥後銀行", title:"天草支店副支店長", name:"猿渡　誠士", kana:"サルワタシ", seat:"10列-22"},
 
  // --- 被表彰者 E-22～E-30 ---
   {no:1, cat:"被表彰者", org:"", title:"", name:"", kana:"", seat:"5列-22"},
@@ -273,8 +273,6 @@ const guests = [
   {no:55, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"9列-35"},
   {no:56, cat:"被表彰者（登壇者）", org:"", title:"", name:"", kana:"", seat:"9列-36"},
   // --- 報道関係者 J-22～J-27 ---
-  {no:57, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"10列-21"},
-  {no:57, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"10列-22"},
   {no:58, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"10列-23"},
   {no:59, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"10列-24"},
   {no:60, cat:"報道関係者", org:"", title:"", name:"", kana:"", seat:"10列-25"},
